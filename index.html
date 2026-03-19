@@ -29,15 +29,13 @@
   .input-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
   .input-group input { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.2s; }
   .input-group input:focus { border-color: var(--gold); }
-  .btn { width: 100%; padding: 0.875rem; background: var(--forest); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .btn { width: 100%; padding: 0.875rem; background: var(--forest); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .btn:hover { background: var(--forest-dark); }
   .btn:disabled { opacity: 0.7; cursor: not-allowed; }
   #login-error { color: #e53e3e; font-size: 0.85rem; margin-top: 1rem; display: none; }
 
   /* --- DASHBOARD LAYOUT --- */
   #dashboard { display: none; width: 100%; height: 100%; }
-  
-  /* SIDEBAR */
   .sidebar { width: 280px; background: var(--sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   .brand { padding: 1.5rem; border-bottom: 1px solid var(--border); }
   .brand h1 { font-size: 1.25rem; color: var(--forest); font-weight: 700; }
@@ -54,7 +52,6 @@
   .user-info h4 { font-size: 0.9rem; margin-bottom: 0.1rem; }
   .user-info p { font-size: 0.75rem; color: var(--text-muted); }
 
-  /* MAIN CONTENT */
   .main-content { flex: 1; overflow-y: auto; padding: 2.5rem 3rem; position: relative; }
   .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
   .badge { background: #eef2ff; color: #4f46e5; padding: 0.35rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
@@ -89,7 +86,7 @@
       <label>Registered Email</label>
       <input type="email" id="login-email" placeholder="student@university.edu" required>
     </div>
-    <button class="btn" onclick="openLogModal()" style="width:auto; padding:0.5rem 1rem; background:white; color:var(--text-main); border:1px solid var(--border)"><i class="fas fa-cloud-upload-alt"></i> Submit Day 1 Log</button>
+    <button class="btn" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
     <div id="login-error"></div>
   </div>
 </div>
@@ -102,24 +99,9 @@
     <nav class="nav-menu">
       <div class="module-group">
         <div class="module-title">Week 1: Foundations</div>
-        <div class="nav-item active" onclick="switchTab(this)"><i class="fas fa-flag"></i> Day 1: Orientation</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-keyboard"></i> Day 3: Bilingual Typing</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-file-alt"></i> Day 5: Structuring Logs</div>
-      </div>
-      <div class="module-group">
-        <div class="module-title">Week 2: CRM & Tools</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-users"></i> Day 8: CRM Basics</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-robot"></i> Day 13: AI for Language</div>
-      </div>
-      <div class="module-group">
-        <div class="module-title">Week 3: Translation</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-language"></i> Day 15: Methodology</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-id-card"></i> Day 16: Bilingual CVs</div>
-      </div>
-      <div class="module-group">
-        <div class="module-title">Week 4: Final Project</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-chart-line"></i> Day 22: Consulting Challenge</div>
-        <div class="nav-item" onclick="switchTab(this)"><i class="fas fa-graduation-cap"></i> Day 29: Final Report</div>
+        <div class="nav-item active" onclick="switchTab(this, 1)"><i class="fas fa-flag"></i> Day 1: Orientation</div>
+        <div class="nav-item" onclick="switchTab(this, 2)"><i class="fas fa-keyboard"></i> Day 2: Business Comm</div>
+        <div class="nav-item" onclick="switchTab(this, 3)"><i class="fas fa-file-alt"></i> Day 3: Bilingual Typing</div>
       </div>
     </nav>
     <div class="user-profile">
@@ -133,41 +115,32 @@
 
   <main class="main-content">
     <div class="header-actions">
-      <div class="badge">Module 1.1</div>
-      <button class="btn" style="width:auto; padding:0.5rem 1rem; background:white; color:var(--text-main); border:1px solid var(--border)"><i class="fas fa-cloud-upload-alt"></i> Submit Logbook</button>
+      <div class="badge" id="day-badge">Day 1</div>
+      <button class="btn" onclick="openLogModal()" style="width:auto; padding:0.5rem 1rem; background:white; color:var(--text-main); border:1px solid var(--border)">
+        <i class="fas fa-cloud-upload-alt"></i> Submit Logbook
+      </button>
     </div>
     
     <div class="content-header">
-      <h2>Welcome to Orientation</h2>
-      <p>In this session, you will be introduced to the Peregrine T&C ecosystem, the expectations for your 120-hour FYUGP credit program, and how to utilize this portal to log your daily corporate tasks.</p>
+      <h2 id="content-title">Welcome to Orientation</h2>
+      <p id="content-desc">In this session, you will be introduced to the Peregrine T&C ecosystem, the expectations for your program, and how to utilize this portal to log your daily corporate tasks.</p>
     </div>
 
     <div class="video-placeholder">
       <i class="fas fa-play-circle"></i>
-      <h3>Orientation Video Lecture</h3>
-      <p style="margin-top:0.5rem; font-size:0.85rem">Embed your YouTube or Vimeo unlisted link here</p>
-    </div>
-
-    <div style="margin-top: 2rem;">
-      <h3 style="margin-bottom: 1rem;">Today's Objectives</h3>
-      <ul style="list-style-position: inside; color: var(--text-muted); line-height: 1.8;">
-        <li>Review the 30-Day Syllabus structure.</li>
-        <li>Set up your Professional LinkedIn Profile.</li>
-        <li>Send a formal introduction email to your mentor.</li>
-      </ul>
+      <h3>Video Lecture</h3>
+      <p style="margin-top:0.5rem; font-size:0.85rem">Lesson Video Content</p>
     </div>
   </main>
 
   <aside class="ai-panel" id="ai-panel">
-    <div class="ai-toggle" onclick="toggleAI()">
-      <i class="fas fa-sparkles"></i>
-    </div>
+    <div class="ai-toggle" onclick="toggleAI()"><i class="fas fa-sparkles"></i></div>
     <div class="ai-header">
       <h3><i class="fas fa-robot"></i> Academy Mentor</h3>
       <i class="fas fa-times" style="cursor:pointer" onclick="toggleAI()"></i>
     </div>
     <div class="ai-chat" id="chat-box">
-      <div class="msg bot">Hello! I am your AI Mentor powered by Gemini. Ask me to help draft your logbook, review a translation, or explain a corporate concept!</div>
+      <div class="msg bot">Hello! I am your AI Mentor. Ask me to help draft your logbook or review a translation!</div>
     </div>
     <div class="ai-input">
       <input type="text" id="ai-prompt" placeholder="Ask for help..." onkeypress="if(event.key === 'Enter') sendPrompt()">
@@ -177,17 +150,14 @@
 </div>
 
 <script>
-// Paste your exact Web App URL here
 const API_URL = "https://script.google.com/macros/s/AKfycbxbIEc1gL2lpJdNT9ZuRRdWTV2UZYWgvOfjuLFelsuk6xX08rJAAc4j8H5fA3rIRanJ/exec";
-
 let currentUserEmail = "";
+let currentDay = 1;
 
-// Login Function
 function authenticate() {
   const email = document.getElementById('login-email').value.trim();
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
-  
   if(!email) return;
   
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
@@ -198,12 +168,9 @@ function authenticate() {
     .then(res => res.json())
     .then(data => {
       if(data.ok) {
-        // Success! Load Dashboard
         currentUserEmail = email;
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('dashboard').style.display = 'flex';
-        
-        // Update Sidebar Profile
         document.getElementById('user-name').innerText = data.name;
         document.getElementById('user-track').innerText = data.track;
         document.getElementById('user-initial').innerText = data.name.charAt(0).toUpperCase();
@@ -213,79 +180,55 @@ function authenticate() {
         btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
         btn.disabled = false;
       }
-    }).catch(e => {
-      err.innerText = "Network error. Please try again.";
-      err.style.display = 'block';
-      btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
-      btn.disabled = false;
     });
 }
 
-// UI Navigation
-function switchTab(el) {
+function switchTab(el, day) {
   document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
   el.classList.add('active');
-  // Later you can make this change the main content dynamically!
+  currentDay = day;
+  document.getElementById('day-badge').innerText = "Day " + day;
+  // We will add the syllabus text switching here next!
 }
 
-function toggleAI() {
-  document.getElementById('ai-panel').classList.toggle('open');
-}
+function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
 
-// AI Chat Function
 function sendPrompt() {
   const input = document.getElementById('ai-prompt');
   const text = input.value.trim();
   if(!text) return;
-
   const chatBox = document.getElementById('chat-box');
-  
-  // Add User Message
   chatBox.innerHTML += `<div class="msg user">${text}</div>`;
   input.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
-
-  // Add Loading indicator
   const loadId = 'load-' + Date.now();
   chatBox.innerHTML += `<div class="msg bot" id="${loadId}"><i class="fas fa-ellipsis-h fa-fade"></i> Thinking...</div>`;
-  chatBox.scrollTop = chatBox.scrollHeight;
-
-  // Call Gemini Backend
+  
   fetch(`${API_URL}?action=chat&email=${encodeURIComponent(currentUserEmail)}&q=${encodeURIComponent(text)}`)
     .then(res => res.json())
     .then(data => {
       document.getElementById(loadId).remove();
       if(data.ok) {
-        // Format basic line breaks to HTML
         const formattedReply = data.reply.replace(/\n/g, '<br>');
         chatBox.innerHTML += `<div class="msg bot">${formattedReply}</div>`;
       } else {
-        chatBox.innerHTML += `<div class="msg bot" style="color:red">Error: Could not connect to AI.</div>`;
+        chatBox.innerHTML += `<div class="msg bot" style="color:red">Error.</div>`;
       }
       chatBox.scrollTop = chatBox.scrollHeight;
-    }).catch(e => {
-      document.getElementById(loadId).remove();
-      chatBox.innerHTML += `<div class="msg bot" style="color:red">Network error.</div>`;
     });
 }
+
 function openLogModal() {
-  const logContent = prompt("Enter your Journal/Log for today:");
+  const logContent = prompt("Day " + currentDay + " Journal Entry:");
   if (!logContent) return;
-
-  // Assuming Day 1 for now - we will make this dynamic next!
-  const day = "1"; 
-
-  fetch(`${API_URL}?action=log_progress&email=${encodeURIComponent(currentUserEmail)}&day=${day}&content=${encodeURIComponent(logContent)}`)
+  
+  fetch(`${API_URL}?action=log_progress&email=${encodeURIComponent(currentUserEmail)}&day=${currentDay}&content=${encodeURIComponent(logContent)}`)
     .then(res => res.json())
     .then(data => {
-      if(data.ok) {
-        alert("Success! Your logbook for Day " + day + " has been recorded.");
-      } else {
-        alert("Error: " + data.error);
-      }
+      if(data.ok) alert("Logbook Saved for Day " + currentDay);
+      else alert("Error: " + data.error);
     });
 }
-  
 </script>
 </body>
 </html>
