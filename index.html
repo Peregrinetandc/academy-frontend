@@ -3,88 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peregrine Academy | Student Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Student Portal | Peregrine Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+  /* ── PEREGRINE GLOBAL DESIGN SYSTEM ── */
   :root {
-    --forest: #0d5e3a;
-    --forest-dark: #094028;
-    --gold: #c9913a;
-    --bg-light: #f8faf9;
-    --sidebar: #ffffff;
-    --text-main: #1a202c;
-    --text-muted: #718096;
-    --border: #e2e8f0;
+    --navy: #0D1B2A;
+    --navy-light: #162030;
+    --gold: #C9A84C;
+    --gold-hover: #b5953e;
+    --cream: #F9F5ED;
+    --cream-border: #E0D8C8;
+    --white: #ffffff;
+    --text-main: #1E2D40;
+    --text-muted: #6B7A8F;
+    --red: #A8272A;
+    --green: #1a5c35;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
-  body { background: var(--bg-light); color: var(--text-main); height: 100vh; overflow: hidden; display: flex; }
   
-  /* --- LOGIN SCREEN --- */
-  #login-screen { position: fixed; inset: 0; background: var(--bg-light); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-  .login-box { background: #fff; padding: 3rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; border: 1px solid var(--border); }
-  .login-box h2 { color: var(--forest); margin-bottom: 0.5rem; font-size: 1.8rem; }
-  .login-box p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
-  .input-group { text-align: left; margin-bottom: 1.5rem; }
-  .input-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-  .input-group input { width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.2s; }
-  .input-group input:focus { border-color: var(--gold); }
-  .btn { width: 100%; padding: 0.875rem; background: var(--forest); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .btn:hover { background: var(--forest-dark); }
-  .btn:disabled { opacity: 0.7; cursor: not-allowed; }
-  #login-error { color: #e53e3e; font-size: 0.85rem; margin-top: 1rem; display: none; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    font-family: 'Outfit', sans-serif; 
+    background: var(--cream); 
+    color: var(--text-main); 
+    height: 100vh; 
+    overflow: hidden; 
+    display: flex; 
+  }
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
 
-  /* --- DASHBOARD LAYOUT --- */
+  /* ── LOGIN SCREEN ── */
+  #login-screen { 
+    position: fixed; inset: 0; background: var(--cream); 
+    display: flex; align-items: center; justify-content: center; z-index: 1000;
+    background-image: radial-gradient(circle at top right, rgba(201,168,76,0.05) 0%, transparent 40%);
+  }
+  .login-box { 
+    background: var(--white); padding: 3.5rem; border-radius: 12px; 
+    box-shadow: 0 10px 40px rgba(13,27,42,0.08); width: 100%; max-width: 420px; 
+    text-align: center; border: 1px solid var(--cream-border); 
+  }
+  .login-box h2 { color: var(--navy); font-size: 2.2rem; margin-bottom: 0.2rem; font-weight: 700; }
+  .login-box h2 span { color: var(--gold); }
+  .login-box p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem; }
+  .input-group { text-align: left; margin-bottom: 1.5rem; }
+  .input-group label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .input-group input { 
+    width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--cream-border); 
+    border-radius: 6px; font-size: 1rem; outline: none; transition: border-color 0.3s; 
+    font-family: 'Outfit', sans-serif; background: var(--cream);
+  }
+  .input-group input:focus { border-color: var(--gold); background: var(--white); }
+  .btn { 
+    width: 100%; padding: 0.85rem; background: var(--navy); color: var(--white); 
+    border: none; border-radius: 6px; font-size: 1rem; font-weight: 500; 
+    cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; 
+    font-family: 'Outfit', sans-serif;
+  }
+  .btn:hover { background: var(--gold); color: var(--navy); }
+  .btn:disabled { opacity: 0.7; cursor: not-allowed; }
+  #login-error { color: var(--red); font-size: 0.85rem; margin-top: 1rem; display: none; }
+
+  /* ── DASHBOARD LAYOUT ── */
   #dashboard { display: none; width: 100%; height: 100%; }
-  .sidebar { width: 280px; background: var(--sidebar); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-  .brand { padding: 1.5rem; border-bottom: 1px solid var(--border); }
-  .brand h1 { font-size: 1.25rem; color: var(--forest); font-weight: 700; }
+  
+  /* SIDEBAR (Navy Theme) */
+  .sidebar { 
+    width: 280px; background: var(--navy); color: var(--white);
+    display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.05);
+    z-index: 10;
+  }
+  .brand { padding: 2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .brand h1 { font-size: 1.5rem; color: var(--white); font-weight: 700; letter-spacing: 0.02em; }
   .brand span { color: var(--gold); }
   .nav-menu { flex: 1; overflow-y: auto; padding: 1.5rem 0; }
+  /* Custom Scrollbar for Sidebar */
+  .nav-menu::-webkit-scrollbar { width: 4px; }
+  .nav-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
   .module-group { margin-bottom: 1.5rem; }
-  .module-title { padding: 0 1.5rem; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
-  .nav-item { padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: var(--text-main); text-decoration: none; font-size: 0.95rem; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; }
-  .nav-item:hover { background: var(--bg-light); }
-  .nav-item.active { background: #f0fdf4; border-left-color: var(--forest); color: var(--forest); font-weight: 600; }
-  .nav-item i { width: 20px; text-align: center; color: var(--gold); }
-  .user-profile { padding: 1.25rem 1.5rem; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem; }
-  .avatar { width: 36px; height: 36px; background: var(--gold); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-  .user-info h4 { font-size: 0.9rem; margin-bottom: 0.1rem; }
-  .user-info p { font-size: 0.75rem; color: var(--text-muted); }
-
-  .main-content { flex: 1; overflow-y: auto; padding: 2.5rem 3rem; position: relative; }
-  .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-  .badge { background: #eef2ff; color: #4f46e5; padding: 0.35rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
-  .content-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-  .content-header p { color: var(--text-muted); line-height: 1.6; max-width: 800px; }
+  .module-title { padding: 0 1.5rem; font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+  .nav-item { 
+    padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; 
+    color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; 
+    cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; 
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+  .nav-item.active { background: rgba(201,168,76,0.1); border-left-color: var(--gold); color: var(--gold); font-weight: 500; }
+  .nav-item i { width: 20px; text-align: center; font-size: 1.1em; }
   
-  .video-placeholder { width: 100%; max-width: 800px; height: 450px; background: #e2e8f0; border-radius: 12px; margin: 2rem 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); border: 2px dashed #cbd5e1; }
-  .video-placeholder i { font-size: 3rem; margin-bottom: 1rem; color: #94a3b8; }
+  .user-profile { padding: 1.25rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 0.75rem; background: var(--navy-light); }
+  .avatar { width: 38px; height: 38px; background: var(--gold); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1.1rem; }
+  .user-info h4 { font-size: 0.9rem; margin-bottom: 0.1rem; font-weight: 500; color: var(--white); }
+  .user-info p { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
 
-  /* AI MENTOR WIDGET */
-  .ai-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 350px; background: white; border-left: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: -5px 0 25px rgba(0,0,0,0.03); transform: translateX(100%); transition: transform 0.3s ease-in-out; z-index: 100; }
+  /* MAIN CONTENT */
+  .main-content { flex: 1; overflow-y: auto; padding: 3rem 4rem; position: relative; background: var(--cream); }
+  .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+  .badge { background: var(--navy); color: var(--gold); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+  .btn-outline {
+    padding: 0.6rem 1.2rem; background: transparent; color: var(--navy); 
+    border: 1px solid var(--navy); border-radius: 6px; font-size: 0.9rem; 
+    font-weight: 500; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+  
+  .content-header h2 { font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--navy); line-height: 1.2; }
+  .content-header p { color: var(--text-muted); line-height: 1.7; max-width: 800px; font-size: 1.05rem; }
+  
+  .video-placeholder { 
+    width: 100%; max-width: 850px; height: 480px; background: var(--white); 
+    border-radius: 12px; margin: 2.5rem 0; display: flex; flex-direction: column; 
+    align-items: center; justify-content: center; color: var(--text-muted); 
+    border: 1px solid var(--cream-border); box-shadow: 0 15px 35px rgba(13,27,42,0.05);
+    transition: transform 0.3s;
+  }
+  .video-placeholder:hover { transform: translateY(-5px); }
+  .video-placeholder i { font-size: 3.5rem; margin-bottom: 1rem; color: var(--gold); opacity: 0.8; }
+  
+  .lesson-details { max-width: 850px; background: var(--white); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--cream-border); box-shadow: 0 5px 20px rgba(0,0,0,0.02); }
+  .lesson-details h3 { color: var(--navy); font-size: 1.5rem; margin-bottom: 1rem; }
+  .lesson-details ul { list-style: none; }
+  .lesson-details li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: var(--text-main); line-height: 1.6; }
+  .lesson-details li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: bold; }
+
+  /* ── AI MENTOR WIDGET (Dark Premium Theme) ── */
+  .ai-panel { 
+    position: fixed; right: 0; top: 0; bottom: 0; width: 380px; 
+    background: rgba(13,27,42,0.98); backdrop-filter: blur(10px); 
+    border-left: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; 
+    box-shadow: -10px 0 40px rgba(0,0,0,0.15); transform: translateX(100%); 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 100; color: var(--white);
+  }
   .ai-panel.open { transform: translateX(0); }
-  .ai-toggle { position: absolute; left: -48px; top: 20px; width: 48px; height: 48px; background: var(--forest); color: white; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: -4px 4px 15px rgba(13,94,58,0.2); font-size: 1.2rem; }
-  .ai-header { padding: 1.25rem; border-bottom: 1px solid var(--border); background: var(--forest); color: white; display: flex; justify-content: space-between; align-items: center; }
-  .ai-header h3 { font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
-  .ai-chat { flex: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; background: #f8faf9; }
-  .msg { max-width: 85%; padding: 0.875rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; }
-  .msg.bot { background: white; border: 1px solid var(--border); align-self: flex-start; border-top-left-radius: 0; }
-  .msg.user { background: var(--forest); color: white; align-self: flex-end; border-top-right-radius: 0; }
-  .ai-input { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; background: white; }
-  .ai-input input { flex: 1; padding: 0.75rem; border: 1px solid var(--border); border-radius: 6px; outline: none; }
-  .ai-input button { padding: 0 1rem; background: var(--gold); color: white; border: none; border-radius: 6px; cursor: pointer; }
+  .ai-toggle { 
+    position: absolute; left: -56px; top: 24px; width: 56px; height: 56px; 
+    background: var(--navy); color: var(--gold); border-radius: 12px 0 0 12px; 
+    display: flex; align-items: center; justify-content: center; cursor: pointer; 
+    box-shadow: -4px 4px 20px rgba(0,0,0,0.1); font-size: 1.4rem; border: 1px solid rgba(255,255,255,0.1); border-right: none;
+    transition: all 0.3s;
+  }
+  .ai-toggle:hover { background: var(--gold); color: var(--navy); }
+  .ai-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
+  .ai-header h3 { font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem; color: var(--white); font-family: 'Outfit', sans-serif; font-weight: 500;}
+  .ai-chat { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; }
+  .ai-chat::-webkit-scrollbar { width: 4px; }
+  .ai-chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+  
+  .msg { max-width: 85%; padding: 1rem 1.1rem; border-radius: 10px; font-size: 0.9rem; line-height: 1.6; }
+  .msg.bot { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); align-self: flex-start; border-top-left-radius: 0; color: #f2ede4; }
+  .msg.user { background: var(--gold); color: var(--navy); align-self: flex-end; border-top-right-radius: 0; font-weight: 500; }
+  
+  .ai-input { padding: 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; gap: 0.5rem; background: rgba(0,0,0,0.2); }
+  .ai-input input { 
+    flex: 1; padding: 0.85rem 1rem; background: rgba(255,255,255,0.05); 
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; outline: none; 
+    color: var(--white); font-family: 'Outfit', sans-serif; transition: border 0.3s;
+  }
+  .ai-input input:focus { border-color: var(--gold); }
+  .ai-input input::placeholder { color: rgba(255,255,255,0.3); }
+  .ai-input button { 
+    padding: 0 1.25rem; background: var(--gold); color: var(--navy); 
+    border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s;
+  }
+  .ai-input button:hover { background: var(--gold-hover); }
 </style>
 </head>
 <body>
 
 <div id="login-screen">
   <div class="login-box">
-    <h2>Peregrine <span>Academy</span></h2>
-    <p>Sign in to your Student Portal</p>
+    <h2 class="serif">Peregrine <span>Academy</span></h2>
+    <p>Professional Apprenticeship Portal</p>
     <div class="input-group">
       <label>Registered Email</label>
-      <input type="email" id="login-email" placeholder="student@university.edu" required>
+      <input type="email" id="login-email" placeholder="intern@university.edu" required>
     </div>
     <button class="btn" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
     <div id="login-error"></div>
@@ -94,14 +189,19 @@
 <div id="dashboard">
   <aside class="sidebar">
     <div class="brand">
-      <h1>Peregrine <span>Academy</span></h1>
+      <h1 class="serif">Peregrine <span>Academy</span></h1>
     </div>
     <nav class="nav-menu">
       <div class="module-group">
         <div class="module-title">Week 1: Foundations</div>
         <div class="nav-item active" onclick="switchTab(this, 1)"><i class="fas fa-flag"></i> Day 1: Orientation</div>
-        <div class="nav-item" onclick="switchTab(this, 2)"><i class="fas fa-keyboard"></i> Day 2: Business Comm</div>
-        <div class="nav-item" onclick="switchTab(this, 3)"><i class="fas fa-file-alt"></i> Day 3: Bilingual Typing</div>
+        <div class="nav-item" onclick="switchTab(this, 2)"><i class="fas fa-envelope-open-text"></i> Day 2: Business Comm</div>
+        <div class="nav-item" onclick="switchTab(this, 3)"><i class="fas fa-keyboard"></i> Day 3: Bilingual Typing</div>
+      </div>
+      <div class="module-group">
+        <div class="module-title">Week 2: Office & Tools</div>
+        <div class="nav-item" onclick="switchTab(this, 5)"><i class="fas fa-folder-open"></i> Day 5: Office Mgmt</div>
+        <div class="nav-item" onclick="switchTab(this, 8)"><i class="fas fa-users"></i> Day 8: CRM Basics</div>
       </div>
     </nav>
     <div class="user-profile">
@@ -115,44 +215,84 @@
 
   <main class="main-content">
     <div class="header-actions">
-      <div class="badge" id="day-badge">Day 1</div>
-      <button class="btn" onclick="openLogModal()" style="width:auto; padding:0.5rem 1rem; background:white; color:var(--text-main); border:1px solid var(--border)">
-        <i class="fas fa-cloud-upload-alt"></i> Submit Logbook
+      <div class="badge" id="day-badge">Day 1 Module</div>
+      <button class="btn-outline" onclick="openLogModal()">
+        <i class="fas fa-cloud-upload-alt"></i> Submit Daily Log
       </button>
     </div>
     
     <div class="content-header">
-      <h2 id="content-title">Welcome to Orientation</h2>
-      <p id="content-desc">In this session, you will be introduced to the Peregrine T&C ecosystem, the expectations for your program, and how to utilize this portal to log your daily corporate tasks.</p>
+      <h2 class="serif" id="content-title">Welcome to Orientation & Library Prep</h2>
+      <p id="content-desc">In this session, we establish a strong foundation for the internship. You will be introduced to the program expectations, essential library resources, and the daily logbook reporting structure.</p>
     </div>
 
     <div class="video-placeholder">
       <i class="fas fa-play-circle"></i>
-      <h3>Video Lecture</h3>
-      <p style="margin-top:0.5rem; font-size:0.85rem">Lesson Video Content</p>
+      <h3 class="serif" style="color:var(--navy); margin-bottom: 0.2rem;">Lecture Masterclass</h3>
+      <p style="font-size:0.9rem">Video Content Pending</p>
+    </div>
+
+    <div class="lesson-details">
+      <h3 class="serif">Today's Key Objectives</h3>
+      <ul id="content-objectives">
+        <li>Review the 30-Day Syllabus structure and evaluation metrics.</li>
+        <li>Familiarize yourself with OPAC and Library classification systems.</li>
+        <li>Complete your first Daily Journal reflection.</li>
+      </ul>
     </div>
   </main>
 
   <aside class="ai-panel" id="ai-panel">
     <div class="ai-toggle" onclick="toggleAI()"><i class="fas fa-sparkles"></i></div>
     <div class="ai-header">
-      <h3><i class="fas fa-robot"></i> Academy Mentor</h3>
-      <i class="fas fa-times" style="cursor:pointer" onclick="toggleAI()"></i>
+      <h3><i class="fas fa-robot" style="color:var(--gold)"></i> Peregrine AI</h3>
+      <i class="fas fa-times" style="cursor:pointer; color:rgba(255,255,255,0.5)" onclick="toggleAI()"></i>
     </div>
     <div class="ai-chat" id="chat-box">
-      <div class="msg bot">Hello! I am your AI Mentor. Ask me to help draft your logbook or review a translation!</div>
+      <div class="msg bot">Welcome to Peregrine AI. I am your integrated mentor. How can I assist with your translations or corporate drafting today?</div>
     </div>
     <div class="ai-input">
-      <input type="text" id="ai-prompt" placeholder="Ask for help..." onkeypress="if(event.key === 'Enter') sendPrompt()">
+      <input type="text" id="ai-prompt" placeholder="Ask your mentor..." onkeypress="if(event.key === 'Enter') sendPrompt()">
       <button onclick="sendPrompt()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </aside>
 </div>
 
 <script>
+// --- YOUR API URL ---
 const API_URL = "https://script.google.com/macros/s/AKfycbxbIEc1gL2lpJdNT9ZuRRdWTV2UZYWgvOfjuLFelsuk6xX08rJAAc4j8H5fA3rIRanJ/exec";
+
 let currentUserEmail = "";
 let currentDay = 1;
+
+// --- SYLLABUS DATA DICTIONARY ---
+const syllabusData = {
+  1: {
+    title: "Welcome to Orientation & Library Prep",
+    desc: "In this session, we establish a strong foundation for the internship. You will be introduced to the program expectations, essential library resources, and the daily logbook reporting structure.",
+    objectives: "<li>Review the 30-Day Syllabus structure and evaluation metrics.</li><li>Familiarize yourself with OPAC and Library classification systems.</li><li>Complete your first Daily Journal reflection.</li>"
+  },
+  2: {
+    title: "Business Communication Essentials",
+    desc: "Today focuses on the core principles of effective bilingual business communication. We will explore formal letter structure, professional tone, and active listening techniques.",
+    objectives: "<li>Draft a formal business letter in both Arabic and English.</li><li>Identify nonverbal cues in corporate environments.</li><li>Participate in constructive peer review of drafted emails.</li>"
+  },
+  3: {
+    title: "Bilingual Typing & Presentation Intro",
+    desc: "Develop speed and accuracy in both Arabic and English typing layouts. We will also begin structuring your first professional presentation outline.",
+    objectives: "<li>Complete bilingual typing speed drills.</li><li>Understand the basic structure of a corporate presentation.</li><li>Create an outline for a bilingual self-introduction.</li>"
+  },
+  5: {
+    title: "Modern Office Management",
+    desc: "Understand the fundamentals of office organization, efficient filing systems, and time-management scheduling using basic computer OS functions.",
+    objectives: "<li>Create a sample digital filing system.</li><li>Draft a structured weekly professional schedule.</li><li>Submit the completed task via formal email.</li>"
+  },
+  8: {
+    title: "CRM Simulation & Client Relations",
+    desc: "An introduction to Client Relationship Management (CRM) principles. We will research corporate bilingual presence and conceptualize a basic CRM setup.",
+    objectives: "<li>Research a company's Arabic/English brand presence.</li><li>Draft a Company Profile summary.</li><li>Design a conceptual client intake workflow.</li>"
+  }
+};
 
 function authenticate() {
   const email = document.getElementById('login-email').value.trim();
@@ -187,8 +327,14 @@ function switchTab(el, day) {
   document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
   el.classList.add('active');
   currentDay = day;
-  document.getElementById('day-badge').innerText = "Day " + day;
-  // We will add the syllabus text switching here next!
+  document.getElementById('day-badge').innerText = "Day " + day + " Module";
+  
+  // Update Content dynamically based on dictionary
+  if(syllabusData[day]) {
+    document.getElementById('content-title').innerText = syllabusData[day].title;
+    document.getElementById('content-desc').innerText = syllabusData[day].desc;
+    document.getElementById('content-objectives').innerHTML = syllabusData[day].objectives;
+  }
 }
 
 function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
@@ -202,7 +348,7 @@ function sendPrompt() {
   input.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
   const loadId = 'load-' + Date.now();
-  chatBox.innerHTML += `<div class="msg bot" id="${loadId}"><i class="fas fa-ellipsis-h fa-fade"></i> Thinking...</div>`;
+  chatBox.innerHTML += `<div class="msg bot" id="${loadId}"><i class="fas fa-ellipsis-h fa-fade"></i></div>`;
   
   fetch(`${API_URL}?action=chat&email=${encodeURIComponent(currentUserEmail)}&q=${encodeURIComponent(text)}`)
     .then(res => res.json())
@@ -212,20 +358,20 @@ function sendPrompt() {
         const formattedReply = data.reply.replace(/\n/g, '<br>');
         chatBox.innerHTML += `<div class="msg bot">${formattedReply}</div>`;
       } else {
-        chatBox.innerHTML += `<div class="msg bot" style="color:red">Error.</div>`;
+        chatBox.innerHTML += `<div class="msg bot" style="color:var(--red)">Error processing request.</div>`;
       }
       chatBox.scrollTop = chatBox.scrollHeight;
     });
 }
 
 function openLogModal() {
-  const logContent = prompt("Day " + currentDay + " Journal Entry:");
+  const logContent = prompt(`Submit your reflection for Day ${currentDay}:`);
   if (!logContent) return;
   
   fetch(`${API_URL}?action=log_progress&email=${encodeURIComponent(currentUserEmail)}&day=${currentDay}&content=${encodeURIComponent(logContent)}`)
     .then(res => res.json())
     .then(data => {
-      if(data.ok) alert("Logbook Saved for Day " + currentDay);
+      if(data.ok) alert("Success! Logbook entry securely recorded.");
       else alert("Error: " + data.error);
     });
 }
