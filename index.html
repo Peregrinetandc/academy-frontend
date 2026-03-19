@@ -89,7 +89,7 @@
       <label>Registered Email</label>
       <input type="email" id="login-email" placeholder="student@university.edu" required>
     </div>
-    <button class="btn" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right" style="margin-left:5px"></i></button>
+    <button class="btn" onclick="openLogModal()" style="width:auto; padding:0.5rem 1rem; background:white; color:var(--text-main); border:1px solid var(--border)"><i class="fas fa-cloud-upload-alt"></i> Submit Day 1 Log</button>
     <div id="login-error"></div>
   </div>
 </div>
@@ -268,6 +268,24 @@ function sendPrompt() {
       chatBox.innerHTML += `<div class="msg bot" style="color:red">Network error.</div>`;
     });
 }
+function openLogModal() {
+  const logContent = prompt("Enter your Journal/Log for today:");
+  if (!logContent) return;
+
+  // Assuming Day 1 for now - we will make this dynamic next!
+  const day = "1"; 
+
+  fetch(`${API_URL}?action=log_progress&email=${encodeURIComponent(currentUserEmail)}&day=${day}&content=${encodeURIComponent(logContent)}`)
+    .then(res => res.json())
+    .then(data => {
+      if(data.ok) {
+        alert("Success! Your logbook for Day " + day + " has been recorded.");
+      } else {
+        alert("Error: " + data.error);
+      }
+    });
+}
+  
 </script>
 </body>
 </html>
