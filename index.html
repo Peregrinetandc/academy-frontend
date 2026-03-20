@@ -91,12 +91,11 @@
   .outcome-item p { font-size: 12px; color: var(--muted); line-height: 1.5; margin: 0; }
   .outcome-item p strong { color: var(--text); display: block; margin-bottom: 2px; font-weight: 600; }
 
-  /* ── PEREGRINE AI PANEL (Exact styling from your AI file) ── */
+  /* ── PEREGRINE AI PANEL ── */
   .ai-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 380px; background: var(--ink); border-left: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,0,0,0.5); transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1000; font-family: 'Outfit', sans-serif; color: #f0ede4; }
   .ai-panel.open { transform: translateX(0); }
   .ai-toggle { position: absolute; left: -48px; top: 24px; width: 48px; height: 48px; background: linear-gradient(135deg, var(--forest), var(--forest-2)); color: white; border-radius: 8px 0 0 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: -4px 4px 15px rgba(13,94,58,0.4); font-size: 18px; border: 1px solid rgba(13,200,120,0.3); border-right: none; }
   
-  /* Exact Header from your AI Code */
   .ai-head { display: flex; align-items: center; gap: 11px; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(10,15,13,0.9); }
   .ai-head-icon { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(13,94,58,0.55), rgba(201,145,58,0.28)); border: 1px solid rgba(13,200,120,0.32); display: flex; align-items: center; justify-content: center; font-size: 18px; position: relative; flex-shrink: 0; }
   .ai-head-icon::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: #4ade80; border: 2px solid rgba(10,15,13,0.95); box-shadow: 0 0 6px rgba(74,222,128,0.65); }
@@ -180,11 +179,23 @@
 
   <main class="main-content">
     <div class="main-inner">
-      <div class="header-actions">
+      <div class="header-actions" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; width:100%;">
         <div class="kicker"><i class="fas fa-graduation-cap"></i> <span id="day-badge">Day 1 Module</span></div>
-        <button class="header-cta" onclick="openLogModal()">
-          <i class="fas fa-cloud-upload-alt" style="margin-right:4px;"></i> Submit Daily Log
-        </button>
+        
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="header-cta" id="btn-clockin" onclick="clockIn()" style="background:var(--navy); color:var(--gold);">
+            <i class="fas fa-user-clock" style="margin-right:4px;"></i> Clock In
+          </button>
+
+          <button class="header-cta" onclick="document.getElementById('doc-upload').click()" style="background:var(--forest); color:white;">
+            <i class="fas fa-file-pdf" style="margin-right:4px;"></i> Upload ID/Resume
+          </button>
+          <input type="file" id="doc-upload" style="display:none" onchange="uploadDocument(this)">
+
+          <button class="header-cta" onclick="openLogModal()">
+            <i class="fas fa-cloud-upload-alt" style="margin-right:4px;"></i> Daily Log
+          </button>
+        </div>
       </div>
       
       <div class="sect-card">
@@ -403,6 +414,66 @@ function openLogModal() {
       if(data.ok) alert("Success! Logbook entry securely recorded.");
       else alert("Error: " + data.error);
     });
+}
+
+/* ── ERP: ATTENDANCE CLOCK IN ── */
+function clockIn() {
+  const btn = document.getElementById('btn-clockin');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging...';
+  
+  fetch(`${API_URL}?action=clock_in&email=${encodeURIComponent(currentUserEmail)}`)
+    .then(res => res.json())
+    .then(data => {
+      if(data.ok) {
+        btn.innerHTML = '<i class="fas fa-check-circle"></i> Clocked In';
+        btn.style.background = 'var(--green)';
+        btn.disabled = true; // Prevent double clicks
+      } else {
+        alert("Error logging attendance.");
+        btn.innerHTML = '<i class="fas fa-user-clock"></i> Clock In';
+      }
+    });
+}
+
+/* ── ERP: DOCUMENT UPLOAD (Converts file to Base64 for Google Drive) ── */
+function uploadDocument(input) {
+  if (!input.files || input.files.length === 0) return;
+  const file = input.files[0];
+  
+  // Ask the student what they are uploading
+  const docType = prompt("What type of document is this? (e.g., College ID, Resume, Leave Letter)");
+  if (!docType) { input.value = ''; return; }
+
+  alert("Uploading " + file.name + " securely to Peregrine Drive. This may take a moment...");
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const base64Data = e.target.result.split(',')[1]; // Strip the data URL prefix
+    
+    const payload = {
+      action: 'upload_doc',
+      email: currentUserEmail,
+      docType: docType,
+      fileName: file.name,
+      mimeType: file.type,
+      base64: base64Data
+    };
+
+    fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.ok) {
+        alert("Success! Document saved securely to your file.");
+      } else {
+        alert("Error uploading document: " + data.error);
+      }
+      input.value = ''; // Reset input
+    });
+  };
+  reader.readAsDataURL(file);
 }
 </script>
 </body>
