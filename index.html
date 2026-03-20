@@ -22,7 +22,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
   
-  /* TOP RULE (From your code) */
+  /* TOP RULE */
   .top-rule { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%); z-index: 9999; }
 
   /* ── LOGIN SCREEN ── */
@@ -42,7 +42,7 @@
   /* ── DASHBOARD LAYOUT ── */
   #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; }
   
-  /* SIDEBAR (From your header styles) */
+  /* SIDEBAR */
   .sidebar { width: 280px; background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); }
   .brand-area { padding: 24px 20px; border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 11px; }
   .brand-area .logo-emblem { margin: 0; width: 36px; height: 36px; font-size: 16px; }
@@ -72,7 +72,6 @@
   .header-cta { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 10px 18px; border-radius: 4px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase; transition: background 0.2s; cursor: pointer; border: none; }
   .header-cta:hover { background: var(--gold2); }
   
-  /* EXACT SECT-CARD FROM YOUR HTML */
   .sect-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 16px rgba(13,27,42,0.06); margin-bottom: 24px; overflow: hidden; border: 1px solid var(--border); }
   .sect-head { padding: 18px 22px 0; display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
   .sect-head-icon { width: 32px; height: 32px; background: var(--cream); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -160,11 +159,17 @@
         <div class="nav-item" onclick="switchTab(this, 3)">
           <div class="week-num">D3</div> Bilingual Typing
         </div>
-      </div>
-      <div class="week-group">
-        <div class="week-title">Week 2: Office & Tools</div>
+        <div class="nav-item" onclick="switchTab(this, 4)">
+          <div class="week-num">D4</div> Interim Viva
+        </div>
         <div class="nav-item" onclick="switchTab(this, 5)">
           <div class="week-num">D5</div> Office Mgmt
+        </div>
+        <div class="nav-item" onclick="switchTab(this, 6)">
+          <div class="week-num">D6</div> CRM Portfolio
+        </div>
+        <div class="nav-item" onclick="switchTab(this, 7)">
+          <div class="week-num">D7</div> Rest Day
         </div>
       </div>
     </nav>
@@ -273,7 +278,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxMmiyjz5qlfu8iXkrHG_Zv
 let currentUserEmail = "";
 let currentDay = 1;
 
-// --- SYLLABUS DATA ---
+// --- SYLLABUS DATA (WEEK 1 FULLY POPULATED) ---
 const syllabusData = {
   1: {
     title: "Orientation & Industry Immersion",
@@ -283,21 +288,51 @@ const syllabusData = {
   },
   2: {
     title: "Business Communication Essentials",
-    desc: "Learn formal letter structure, tone, and vocabulary; practice writing components.",
-    obj1: "Formal Writing", obj1Desc: "Draft Arabic & English emails",
-    obj2: "Active Listening", obj2Desc: "Identify nonverbal cues"
+    desc: "Master effective business communication in Arabic and English. \n\nToday's Schedule:\n• 09:30 AM - Written Focus (Letter structures & tone)\n• 11:00 AM - Active Listening & Nonverbal Workshop\n• 01:30 PM - Practical Application (Peer review)\n• 04:30 PM - Journal Writing & Discussion",
+    obj1: "Bilingual Corporate Drafting", 
+    obj1Desc: "Draft complete business letters and emails in both Arabic and English.",
+    obj2: "Active Listening & Culture", 
+    obj2Desc: "Develop active listening skills and recognize cultural differences."
   },
   3: {
     title: "Bilingual Typing & Presentation",
-    desc: "Improve speed/accuracy; familiarize with layouts; utilize online tools.",
-    obj1: "Typing Drills", obj1Desc: "Arabic & English layouts",
-    obj2: "Presentations", obj2Desc: "Structure your corporate intro"
+    desc: "Build professional bilingual typing speed and master the fundamentals of corporate presentations.\n\nToday's Schedule:\n• 09:30 AM - Bilingual Typing (Arabic & English)\n• 11:00 AM - Presentation Skills: Structure & Outlining\n• 01:30 PM - Presentation Preparation & Delivery\n• 04:30 PM - Journal Writing & Discussion",
+    obj1: "Bilingual Typing Speed", 
+    obj1Desc: "Improve typing speed and accuracy in professional layouts.",
+    obj2: "Corporate Presentations", 
+    obj2Desc: "Create structured outlines and deliver a short self-introduction."
+  },
+  4: {
+    title: "Presentation Mastery & Assessment",
+    desc: "Master presentation delivery, handle Q&A sessions, and complete your first graded interim assessment.\n\nToday's Schedule:\n• 09:30 AM - Presentation Delivery, Feedback & Q&A\n• 01:30 PM - Interim Presentation & Viva-voce (5 Marks)\n• 04:30 PM - Journal Writing & Discussion",
+    obj1: "Delivery & Interview Prep", 
+    obj1Desc: "Refine your delivery and introduce basic interview skills.",
+    obj2: "Interim Viva-voce (5 Marks)", 
+    obj2Desc: "Deliver your prepared presentation to assess Week 1 comprehension."
   },
   5: {
     title: "Modern Office Management",
-    desc: "Understand office organization, filing, scheduling; learn essential OS and MS Office functions.",
-    obj1: "Filing Systems", obj1Desc: "Create sample digital folders",
-    obj2: "Time Management", obj2Desc: "Draft a weekly schedule"
+    desc: "Master the fundamentals of modern office organization, efficient filing systems, and essential computer skills.\n\nToday's Schedule (Half Day):\n• 09:30 AM - Intro to Modern Office Management & MS Office\n• Online Task - Create a sample filing system & weekly schedule (Submit via portal)",
+    obj1: "Office Organization", 
+    obj1Desc: "Understand filing, scheduling, and essential OS functions.",
+    obj2: "Practical Task", 
+    obj2Desc: "Create and upload a sample digital filing system."
+  },
+  6: {
+    title: "Bilingual Portfolio & CRM",
+    desc: "Focus on building your professional bilingual portfolio and understanding Client Relationship Management (CRM).\n\nToday's Tasks (Online):\n• Task 1 (2.5 hrs) - Bilingual Business Communication Portfolio\n• Task 2 (2.5 hrs) - Company Profile & CRM Simulation",
+    obj1: "Bilingual Portfolio", 
+    obj1Desc: "Draft and submit formal business letters and emails.",
+    obj2: "CRM Simulation", 
+    obj2Desc: "Research a company's bilingual presence for CRM setup."
+  },
+  7: {
+    title: "Rest & Reflection",
+    desc: "Take a well-deserved break to rest and recharge for the upcoming week. Use this time to reflect on your progress so far.\n\nToday's Schedule:\n• Holiday / Rest Day",
+    obj1: "Reflection", 
+    obj1Desc: "Review your logbook entries and feedback from Week 1.",
+    obj2: "Preparation", 
+    obj2Desc: "Organize your digital workspace for the beginning of Week 2."
   }
 };
 
@@ -338,7 +373,10 @@ function switchTab(el, day) {
   
   if(syllabusData[day]) {
     document.getElementById('content-title').innerText = syllabusData[day].title;
-    document.getElementById('content-desc').innerText = syllabusData[day].desc;
+    
+    // NEW: Handles \n line breaks perfectly
+    document.getElementById('content-desc').innerHTML = syllabusData[day].desc.replace(/\n/g, '<br>');
+    
     document.getElementById('content-objectives').innerHTML = `
       <div class="outcome-item">
         <i class="fas fa-check-circle"></i>
@@ -361,7 +399,6 @@ function sendPrompt() {
   
   const chatBox = document.getElementById('chat-box');
   
-  // User Bubble (Using exact Peregrine AI style)
   chatBox.innerHTML += `
     <div class="ai-msg-wrap" style="flex-direction:row-reverse;">
       <div class="ai-av user">👤</div>
@@ -440,7 +477,6 @@ function uploadDocument(input) {
   if (!input.files || input.files.length === 0) return;
   const file = input.files[0];
   
-  // Ask the student what they are uploading
   const docType = prompt("What type of document is this? (e.g., College ID, Resume, Leave Letter)");
   if (!docType) { input.value = ''; return; }
 
@@ -448,7 +484,7 @@ function uploadDocument(input) {
   
   const reader = new FileReader();
   reader.onload = function(e) {
-    const base64Data = e.target.result.split(',')[1]; // Strip the data URL prefix
+    const base64Data = e.target.result.split(',')[1]; 
     
     const payload = {
       action: 'upload_doc',
@@ -470,7 +506,7 @@ function uploadDocument(input) {
       } else {
         alert("Error uploading document: " + data.error);
       }
-      input.value = ''; // Reset input
+      input.value = ''; 
     });
   };
   reader.readAsDataURL(file);
