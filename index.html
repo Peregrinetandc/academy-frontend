@@ -118,6 +118,218 @@
   .ai-input-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,94,58,0.5); }
   
   @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  /* ── MODULE: RESEARCH REPOSITORY UI ── */
+  .repository-header { margin: 40px 0 20px; border-bottom: 2px solid var(--border); padding-bottom: 16px; }
+  .repository-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .repository-subtitle { font-size: 14px; color: var(--muted); font-weight: 300; max-width: 600px; line-height: 1.6; }
+  
+  .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px; }
+  .resource-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; }
+  .resource-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--forest), #0f7045); opacity: 0; transition: opacity 0.3s; }
+  .resource-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(13,27,42,0.06); border-color: rgba(13,94,58,0.2); }
+  .resource-card:hover::before { opacity: 1; }
+  
+  .rc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .rc-icon { width: 42px; height: 42px; background: rgba(13,94,58,0.08); border: 1px solid rgba(13,94,58,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--forest); flex-shrink: 0; }
+  .rc-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+  .rc-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 16px; min-height: 40px; }
+  
+  .rc-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .rc-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  
+  .rc-why { background: rgba(201,168,76,0.06); padding: 12px 14px; border-radius: 8px; font-size: 12px; color: var(--navy); border-left: 2px solid var(--gold); margin-bottom: 16px; line-height: 1.5; font-weight: 500; }
+  .rc-how { list-style: none; margin: 0 0 24px 0; display: flex; flex-direction: column; gap: 8px; }
+  .rc-how li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+  .rc-how li i { color: var(--gold); font-size: 10px; margin-top: 4px; }
+  
+  .rc-btn { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: var(--cream); border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--navy); text-decoration: none; transition: all 0.2s; }
+  .rc-btn:hover { background: var(--forest); color: white; border-color: var(--forest); }
+
+  .pro-tip { background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.02)); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; margin-bottom: 32px; }
+  .pro-tip-icon { font-size: 24px; color: var(--gold); margin-top: 2px; }
+  .pro-tip-content h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .pro-tip-content p { font-size: 13px; color: var(--navy); line-height: 1.6; opacity: 0.85; margin: 0; }
+
+  .task-box { background: var(--navy); border-radius: 16px; padding: 32px; color: var(--white); margin-bottom: 40px; position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(13,27,42,0.15); }
+  .task-box::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%); border-radius: 50%; transform: translate(30%, -30%); pointer-events: none; }
+  .task-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; position: relative; z-index: 1; }
+  .task-header i { font-size: 24px; color: var(--gold); }
+  .task-header h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--white); margin: 0; }
+  .task-list { display: flex; flex-direction: column; gap: 12px; position: relative; z-index: 1; }
+  .task-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: center; transition: background 0.2s; }
+  .task-item:hover { background: rgba(255,255,255,0.08); }
+  .task-item i { color: var(--mint); font-size: 18px; }
+  .task-item p { font-size: 14px; color: rgba(255,255,255,0.9); margin: 0; line-height: 1.5; }
+
+  .toolkit-section { background: var(--white); border-radius: 16px; padding: 32px; border: 1px solid var(--border); box-shadow: 0 2px 16px rgba(13,27,42,0.03); }
+  .toolkit-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .toolkit-header i { font-size: 22px; color: var(--forest); }
+  .toolkit-header h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin: 0; }
+  .toolkit-list { display: flex; flex-direction: column; gap: 12px; }
+  .toolkit-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--cream); transition: all 0.2s; text-decoration: none; }
+  .toolkit-item:hover { background: var(--white); border-color: rgba(201,168,76,0.4); transform: translateX(4px); box-shadow: 0 4px 12px rgba(13,27,42,0.04); }
+  .tk-left { display: flex; align-items: center; gap: 16px; }
+  .tk-icon { color: var(--gold); font-size: 18px; width: 24px; text-align: center; }
+  .tk-info h5 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .tk-info p { font-size: 12px; color: var(--muted); margin: 0; }
+  .tk-right { display: flex; align-items: center; gap: 16px; }
+  .tk-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; background: rgba(13,94,58,0.1); color: var(--forest); padding: 4px 10px; border-radius: 6px; letter-spacing: 0.05em; }
+  .tk-save { color: #d1d5db; cursor: pointer; transition: all 0.2s; font-size: 18px; padding: 4px; }
+  .tk-save:hover { color: var(--gold); transform: scale(1.1); }
+  .tk-save.saved { color: var(--gold); font-weight: 900; }
+  <div class="repository-header">
+  <div class="kicker" style="margin-bottom: 12px;"><i class="fas fa-laptop-code"></i> Week 1 Module</div>
+  <h1 class="repository-title">Digital Literacy &amp; Online Tools</h1>
+  <p class="repository-subtitle">Master the art of academic and professional research. Below is your complete repository of tools, archives, and databases necessary for drafting high-level corporate and academic reports.</p>
+</div>
+
+<div class="resource-grid">
+  
+  <a href="https://scholar.google.com/" target="_blank" style="text-decoration: none; color: inherit;">
+    <div class="resource-card">
+      <div class="rc-header">
+        <div class="rc-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="rc-title">Google Scholar</div>
+      </div>
+      <p class="rc-desc">The world's most accessible search engine for scholarly literature, peer-reviewed papers, and academic books.</p>
+      
+      <div class="rc-section-title">Why it matters</div>
+      <div class="rc-why">Bypasses standard web junk to exclusively surface verified, citable academic research for your reports.</div>
+      
+      <div class="rc-section-title">How to use</div>
+      <ul class="rc-how">
+        <li><i class="fas fa-check"></i> Use quote marks (" ") for exact phrases</li>
+        <li><i class="fas fa-check"></i> Use the "Cite" button to auto-generate APA/MLA formats</li>
+        <li><i class="fas fa-check"></i> Filter by year on the left sidebar for recent data</li>
+      </ul>
+      <div class="rc-btn">Explore Tool <i class="fas fa-external-link-alt"></i></div>
+    </div>
+  </a>
+
+  <a href="https://www.jstor.org/" target="_blank" style="text-decoration: none; color: inherit;">
+    <div class="resource-card">
+      <div class="rc-header">
+        <div class="rc-icon"><i class="fas fa-book-reader"></i></div>
+        <div class="rc-title">JSTOR</div>
+      </div>
+      <p class="rc-desc">A highly curated digital library of academic journals, books, and primary sources spanning multiple disciplines.</p>
+      
+      <div class="rc-section-title">Why it matters</div>
+      <div class="rc-why">The gold standard for deep humanities, history, and social science archives. Crucial for deep-dive literature reviews.</div>
+      
+      <div class="rc-section-title">How to use</div>
+      <ul class="rc-how">
+        <li><i class="fas fa-check"></i> Use the "Advanced Search" for precise filtering</li>
+        <li><i class="fas fa-check"></i> Look for "Open Access" tags for free downloads</li>
+        <li><i class="fas fa-check"></i> Download PDFs directly to your local drive</li>
+      </ul>
+      <div class="rc-btn">Explore Tool <i class="fas fa-external-link-alt"></i></div>
+    </div>
+  </a>
+
+  <a href="https://www.researchgate.net/" target="_blank" style="text-decoration: none; color: inherit;">
+    <div class="resource-card">
+      <div class="rc-header">
+        <div class="rc-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="rc-title">ResearchGate</div>
+      </div>
+      <p class="rc-desc">A professional network for scientists and researchers to share papers, ask questions, and find collaborators.</p>
+      
+      <div class="rc-section-title">Why it matters</div>
+      <div class="rc-why">Allows you to directly contact authors to request full-text access to papers hidden behind paywalls.</div>
+      
+      <div class="rc-section-title">How to use</div>
+      <ul class="rc-how">
+        <li><i class="fas fa-check"></i> Create a free academic profile</li>
+        <li><i class="fas fa-check"></i> Click "Request Full-text" on restricted papers</li>
+        <li><i class="fas fa-check"></i> Follow specific authors in your track</li>
+      </ul>
+      <div class="rc-btn">Explore Tool <i class="fas fa-external-link-alt"></i></div>
+    </div>
+  </a>
+
+</div>
+
+<div class="pro-tip">
+  <div class="pro-tip-icon"><i class="fas fa-lightbulb"></i></div>
+  <div class="pro-tip-content">
+    <h4>The "Boolean" Search Secret</h4>
+    <p>Stop searching like a beginner. Use <strong>AND</strong>, <strong>OR</strong>, and <strong>NOT</strong> in uppercase when searching databases. For example, searching <em>"Artificial Intelligence" AND "Education" NOT "Robotics"</em> will instantly filter out thousands of irrelevant papers and save you hours of reading time.</p>
+  </div>
+</div>
+
+<div class="task-box">
+  <div class="task-header">
+    <i class="fas fa-clipboard-list"></i>
+    <h3>📌 Week 1 Action Task</h3>
+  </div>
+  <div class="task-list">
+    <div class="task-item">
+      <i class="fas fa-check-circle"></i>
+      <p><strong>Search & Discover:</strong> Find 1 peer-reviewed research paper on Google Scholar related to your specific internship track.</p>
+    </div>
+    <div class="task-item">
+      <i class="fas fa-download"></i>
+      <p><strong>Extract:</strong> Download 1 full-text article from JSTOR or DOAJ.</p>
+    </div>
+    <div class="task-item">
+      <i class="fas fa-pen-nib"></i>
+      <p><strong>Synthesize:</strong> Read the abstract and conclusion, then draft a crisp 100-word summary in your Daily Log.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toolkit-section">
+  <div class="toolkit-header">
+    <i class="fas fa-layer-group"></i>
+    <h3>📚 Your Research Toolkit</h3>
+  </div>
+  <p style="font-size: 13px; color: var(--muted); margin-top: -12px; margin-bottom: 24px;">Click the bookmark icon to save resources to your personal workspace.</p>
+  
+  <div class="toolkit-list">
+    <a href="https://doaj.org/" target="_blank" class="toolkit-item">
+      <div class="tk-left">
+        <div class="tk-icon"><i class="fas fa-unlock-alt"></i></div>
+        <div class="tk-info">
+          <h5>DOAJ (Directory of Open Access Journals)</h5>
+          <p>Over 20,000 high-quality, peer-reviewed, open access journals.</p>
+        </div>
+      </div>
+      <div class="tk-right">
+        <span class="tk-tag">Free Access</span>
+        <i class="far fa-bookmark tk-save" onclick="toggleBookmark(event, this)"></i>
+      </div>
+    </a>
+
+    <a href="https://archive.org/" target="_blank" class="toolkit-item">
+      <div class="tk-left">
+        <div class="tk-icon"><i class="fas fa-landmark"></i></div>
+        <div class="tk-info">
+          <h5>Internet Archive & Wayback Machine</h5>
+          <p>Non-profit library of millions of free books, movies, software, and websites.</p>
+        </div>
+      </div>
+      <div class="tk-right">
+        <span class="tk-tag">Digital Library</span>
+        <i class="far fa-bookmark tk-save" onclick="toggleBookmark(event, this)"></i>
+      </div>
+    </a>
+
+    <a href="https://www.gutenberg.org/" target="_blank" class="toolkit-item">
+      <div class="tk-left">
+        <div class="tk-icon"><i class="fas fa-book"></i></div>
+        <div class="tk-info">
+          <h5>Project Gutenberg</h5>
+          <p>A library of over 70,000 free eBooks, focusing on older works and classics.</p>
+        </div>
+      </div>
+      <div class="tk-right">
+        <span class="tk-tag">eBooks</span>
+        <i class="far fa-bookmark tk-save" onclick="toggleBookmark(event, this)"></i>
+      </div>
+    </a>
+  </div>
+</div>
 </style>
 </head>
 <body>
@@ -518,6 +730,21 @@ function uploadDocument(input) {
     });
   };
   reader.readAsDataURL(file);
+}
+  // Toggle Bookmark State UI
+function toggleBookmark(event, element) {
+  event.preventDefault(); // Prevents the link from opening when clicking the bookmark
+  
+  // Toggle FontAwesome classes (regular vs solid) and the custom 'saved' class
+  if (element.classList.contains('far')) {
+    element.classList.remove('far');
+    element.classList.add('fas', 'saved');
+    // Optional UI feedback
+    console.log("Resource saved to toolkit."); 
+  } else {
+    element.classList.remove('fas', 'saved');
+    element.classList.add('far');
+  }
 }
 </script>
 </body>
