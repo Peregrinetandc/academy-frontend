@@ -14,11 +14,9 @@
     --green: #1a5c35; --green-bg: #f0faf4; --green-bd: #a8d5b8;
     --ink: #0a0f0d; --forest: #0d5e3a; --forest-2: #0f7045;
   }
-  
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
   .top-rule { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%); z-index: 9999; }
-
   #login-screen { position: fixed; inset: 0; background: var(--cream); display: flex; align-items: center; justify-content: center; z-index: 1000; }
   .login-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 16px rgba(13,27,42,0.06); width: 100%; max-width: 400px; padding: 32px; border: 1.5px solid var(--border); text-align: center; }
   .logo-emblem { width: 48px; height: 48px; border: 1.5px solid rgba(201,168,76,0.4); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: rgba(201,168,76,0.08); margin: 0 auto 16px; }
@@ -31,7 +29,6 @@
   .btn-enroll { background: var(--red); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; padding: 14px 24px; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; text-transform: uppercase; width: 100%; }
   .btn-enroll:hover { background: var(--red2); }
   #login-error { color: var(--red); font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
-
   #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; }
   .sidebar { width: 280px; background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); }
   .brand-area { padding: 24px 20px; border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 11px; }
@@ -39,11 +36,9 @@
   .logo-text { display: flex; flex-direction: column; text-align: left; }
   .logo-primary { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); line-height: 1; }
   .logo-secondary { font-size: 8px; color: rgba(201,168,76,0.6); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 3px; }
-  
   .module-navigator { padding: 20px 20px 0; }
   .module-navigator select { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: var(--white); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; outline: none; cursor: pointer; }
   .module-navigator select option { background: var(--navy); color: var(--white); }
-
   .nav-menu { flex: 1; overflow-y: auto; padding: 20px 0; }
   .week-group { margin-bottom: 16px; }
   .week-title { padding: 0 20px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
@@ -52,14 +47,11 @@
   .nav-item.active { background: rgba(201,168,76,0.1); border-left-color: var(--gold); color: var(--gold); font-weight: 600; }
   .week-num { width: 24px; height: 24px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: var(--gold); flex-shrink: 0; }
   .nav-item.active .week-num { background: var(--gold); color: var(--navy); border-color: var(--gold); }
-
   .user-profile { padding: 16px 20px; background: var(--navy2); border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px; }
   .user-info h4 { font-size: 13px; color: var(--white); margin-bottom: 2px; }
   .user-info p { font-size: 11px; color: rgba(255,255,255,0.5); }
-
   .main-content { flex: 1; overflow-y: auto; padding: 32px 40px; background: var(--cream); position: relative; }
   .main-inner { max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
-  
   .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
   .kicker { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); padding: 6px 14px; border-radius: 20px; font-size: 10px; font-weight: 700; color: #7a5c1a; letter-spacing: 2px; text-transform: uppercase; }
   .header-cta { background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 10px 18px; border-radius: 4px; text-decoration: none; letter-spacing: 0.5px; text-transform: uppercase; transition: background 0.2s; cursor: pointer; border: none; }
@@ -101,7 +93,6 @@
   .pm-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .pm-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
   @media(max-width: 768px) { .pm-grid-2, .pm-grid-3 { grid-template-columns: 1fr; } .pm-wrapper { padding: 24px; } }
-  
   .pm-identity-card { border-top: 2px solid #0d5e3a; position: relative; overflow: hidden; }
   .pm-identity-card::after { content: '🦅'; position: absolute; right: -20px; bottom: -20px; font-size: 120px; opacity: 0.03; pointer-events: none; }
   .pm-progress-wrap { margin: 20px 0; }
@@ -111,7 +102,6 @@
   .pm-checklist { list-style: none; padding: 0; margin: 0; }
   .pm-checklist li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #e0dcd3; margin-bottom: 8px; font-weight: 300; }
   .pm-checklist li i { color: #0d5e3a; font-size: 12px; }
-
   .pm-ai-card { background: linear-gradient(145deg, rgba(13,94,58,0.15), rgba(0,0,0,0)); border: 1px solid rgba(13,94,58,0.4); box-shadow: inset 0 0 40px rgba(13,94,58,0.05); }
   .pm-ai-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
   .pm-ai-icon { width: 40px; height: 40px; border-radius: 50%; background: #0d5e3a; display: flex; align-items: center; justify-content: center; font-size: 18px; color: white; box-shadow: 0 0 15px rgba(13,94,58,0.6); }
@@ -119,7 +109,6 @@
   .pm-ai-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
   .pm-ai-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #f2ede4; padding: 10px 16px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 13px; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
   .pm-ai-btn:hover { background: rgba(13,94,58,0.2); border-color: #0d5e3a; color: #4ade80; }
-
   .pm-loop-wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 32px; text-align: center; }
   .pm-loop-step { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(201,145,58,0.2); border-radius: 12px; padding: 24px 10px; position: relative; transition: all 0.3s; }
   .pm-loop-step:hover { background: rgba(201,145,58,0.05); border-color: #c9913a; transform: translateY(-4px); }
@@ -128,7 +117,6 @@
   .pm-loop-step p { font-size: 12px; color: #a39e93; margin: 0; line-height: 1.4; }
   .pm-loop-arrow { color: #0d5e3a; font-size: 20px; }
   @media (max-width: 768px) { .pm-loop-wrap { flex-direction: column; } .pm-loop-arrow { transform: rotate(90deg); margin: 8px 0; } }
-
   .pm-tool-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: #f2ede4; margin-bottom: 8px; }
   .pm-tool-desc { font-size: 13px; color: #a39e93; margin-bottom: 16px; line-height: 1.5; min-height: 40px; }
   .pm-tool-meta { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 16px; margin-bottom: 20px; }
@@ -139,7 +127,6 @@
   .pm-tool-steps li { margin-bottom: 4px; }
   .pm-btn-primary { display: block; text-align: center; background: #c9913a; color: #0a0f0d; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: background 0.2s; }
   .pm-btn-primary:hover { background: #e4c870; }
-
   .pm-toolkit-btn { width: 100%; margin-top: 16px; background: rgba(13,94,58,0.2); color: #4ade80; border: 1px solid rgba(13,94,58,0.5); padding: 14px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 14px; cursor: pointer; transition: all 0.2s; text-align: center; font-weight: 600; }
   .pm-toolkit-btn:hover { background: #0d5e3a; color: #fff; }
   .pm-tk-cat { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #a39e93; margin: 20px 0 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; }
@@ -148,7 +135,6 @@
   .pm-tk-name { color: #f2ede4; font-size: 14px; text-decoration: none; }
   .pm-tk-save { cursor: pointer; color: #7a7060; transition: color 0.2s; }
   .pm-tk-save.saved { color: #c9913a; }
-
   .pm-task-label { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.02); margin-bottom: 8px; transition: background 0.2s; }
   .pm-task-label:hover { background: rgba(255,255,255,0.05); }
   .pm-task-label input { appearance: none; width: 18px; height: 18px; border: 1px solid #7a7060; border-radius: 4px; outline: none; cursor: pointer; transition: all 0.2s; display: grid; place-content: center; flex-shrink: 0; }
@@ -157,7 +143,6 @@
   .pm-task-label input:checked::before { transform: scale(1); }
   .pm-task-text { font-size: 14px; color: #e0dcd3; font-weight: 300; transition: opacity 0.2s; line-height: 1.4; }
   .pm-task-label input:checked ~ .pm-task-text { text-decoration: line-through; opacity: 0.5; }
-
   .pm-sim-card { background: linear-gradient(135deg, rgba(13,94,58,0.1), rgba(0,0,0,0.2)); border: 1px solid #0d5e3a; border-radius: 16px; padding: 24px; }
   .pm-sim-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #4ade80; margin-bottom: 12px; }
   .pm-sim-list { list-style: none; padding: 0; margin: 0; }
@@ -252,17 +237,10 @@
           <h3 class="pcw-title"><i class="fas fa-university"></i> Campus Activities for This Week</h3>
           <p class="pcw-desc">You are participating in the Peregrine Campus. Complete these required activities to finalize this module's requirements.</p>
         </div>
-        
         <div class="pcw-activities">
-          <div class="pcw-badge" title="Provide feedback to your peers on their research articles.">
-            <i class="fas fa-sync-alt"></i> Peer Review Open
-          </div>
-          <div class="pcw-badge" title="Join the expert talk on Academic Publishing.">
-            <i class="fas fa-user-tie" style="color:#c9913a;"></i> Live Guest Lecture
-          </div>
-          <div class="pcw-badge" onclick="openLogModal()" style="cursor: pointer; border-color: #0d5e3a; background: rgba(13,94,58,0.1);">
-            <i class="fas fa-pen"></i> Submit Final Journal
-          </div>
+          <div class="pcw-badge"><i class="fas fa-sync-alt"></i> Peer Review Open</div>
+          <div class="pcw-badge"><i class="fas fa-user-tie" style="color:#c9913a;"></i> Live Guest Lecture</div>
+          <div class="pcw-badge" onclick="openLogModal()" style="cursor: pointer; border-color: #0d5e3a; background: rgba(13,94,58,0.1);"><i class="fas fa-pen"></i> Submit Final Journal</div>
         </div>
       </div>
 
@@ -270,7 +248,7 @@
         <div class="pm-header-badge" style="border-color: rgba(201,145,58,0.8); color: #e4c870; background: rgba(201,145,58,0.15);">
           <i class="fas fa-graduation-cap"></i> Peregriner Final Stage — Scholar Mode
         </div>
-        <h2 class="pm-title">Academic Writing & Publishing</h2>
+        <h2 class="pm-title">Academic Writing & Citation</h2>
         <p class="pm-subtitle">Knowledge becomes impact when it is written and shared.</p>
 
         <div class="pm-grid-2">
@@ -281,26 +259,15 @@
               <div class="pm-progress-label"><span>Phase 4 Finalization</span> <span>Day 25 of 30</span></div>
               <div class="pm-progress-bar"><div class="pm-progress-fill" style="width: 83%; background: #c9913a; box-shadow: 0 0 15px rgba(201,145,58,0.8);"></div></div>
             </div>
-            <ul class="pm-checklist">
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Academic Writing</li>
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Professional Citation</li>
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Publishing Readiness</li>
-            </ul>
           </div>
-
           <div class="pm-glass-card pm-ai-card">
             <div class="pm-ai-header">
               <div class="pm-ai-icon" style="background:#c9913a; box-shadow: 0 0 15px rgba(201,145,58,0.4);"><i class="fas fa-pen-fancy" style="color:#0a0f0d;"></i></div>
               <div class="pm-ai-title" style="color:#e4c870;">Your AI Writing Assistant</div>
             </div>
-            <p style="font-size:13px; color:#e0dcd3; font-weight:300; line-height:1.5;">Improve grammar, refine ideas, structure your writing, and ensure academic integrity before you publish.</p>
+            <p style="font-size:13px; color:#e0dcd3; font-weight:300; line-height:1.5;">Improve grammar, refine ideas, structure your writing, and ensure academic integrity.</p>
             <div class="pm-ai-btns">
-              <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Check the grammar and tone of this paragraph: [Paste text]'; toggleAI();">
-                Check my grammar <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-              </button>
-              <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Explain the difference between APA and MLA citation styles.'; toggleAI();">
-                Explain citation style <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-              </button>
+              <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Check grammar on this paragraph:'; toggleAI();">Check my grammar <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i></button>
             </div>
           </div>
         </div>
@@ -316,8 +283,6 @@
           <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 120px;"><i class="fas fa-edit" style="font-size:20px;"></i><h4 style="font-size:14px;">4. Edit</h4></div>
           <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
           <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 120px;"><i class="fas fa-quote-right" style="font-size:20px;"></i><h4 style="font-size:14px;">5. Cite</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 120px; border-color: #c9913a; background: rgba(201,145,58,0.05);"><i class="fas fa-paper-plane" style="font-size:20px;"></i><h4 style="font-size:14px; color:#c9913a;">6. Publish</h4></div>
         </div>
 
         <h2 class="pm-section-title" style="margin-top: 56px;"><i class="fas fa-signature" style="margin-right:8px; color:#0d5e3a;"></i> Write with Clarity</h2>
@@ -347,94 +312,13 @@
             <a href="https://www.mendeley.com/" target="_blank" class="pm-btn-primary" style="background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1);">Get Mendeley</a>
           </div>
         </div>
-
-        <div class="pm-grid-2" style="margin-top:40px;">
-          <div style="display:flex; flex-direction:column; gap:24px;">
-            <div class="pm-glass-card">
-              <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin-bottom:20px;"><i class="fas fa-clipboard-check" style="color:#0d5e3a; margin-right:8px;"></i> Your Task (Day 25)</h4>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Write a 150-word academic paragraph.</span></label>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Check grammar using Grammarly.</span></label>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Add 2 formal references using Zotero/Mendeley.</span></label>
-            </div>
-            <div class="pm-sim-card" style="border-color:#c9913a; background: linear-gradient(135deg, rgba(201,145,58,0.1), rgba(0,0,0,0.2));">
-              <h4 style="color:#c9913a;"><i class="fas fa-scroll" style="margin-right:8px;"></i> Project: Mini Research Article</h4>
-              <ul class="pm-sim-list">
-                <li>1. Choose a topic from your internship track.</li>
-                <li>2. Write a 300–500 word draft.</li>
-                <li>3. Insert proper in-text citations.</li>
-              </ul>
-            </div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:24px;">
-            <div class="pm-glass-card" style="display:flex; flex-direction:column; height: 100%;">
-              <h4 style="font-family:'Cormorant Garamond', serif; font-size:22px; color:#f2ede4; margin-bottom:4px;"><i class="fas fa-layer-group" style="color:#0d5e3a; margin-right:8px;"></i> Your Writing Toolkit</h4>
-              <div class="pm-tk-cat">✍️ Writing & Checking</div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Grammarly AI</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Turnitin Checker</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-cat">📚 Citation Managers</div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Zotero Library</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Mendeley Network</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <button class="pm-toolkit-btn" onclick="alert('Launching Writing Environment...');" style="margin-top: auto;"><i class="fas fa-feather" style="margin-right:6px;"></i> Start Writing</button>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="pm-wrapper" style="margin-top: 40px; margin-bottom: 0;">
-        <div class="pm-header-badge" style="border-color: rgba(201,145,58,0.8); color: #e4c870; background: rgba(201,145,58,0.15);">
-          <i class="fas fa-book-open"></i> Peregriner Final Stage — Publication Mode
-        </div>
-        <h2 class="pm-title">Academic Publishing</h2>
-        <p class="pm-subtitle">Your ideas deserve to be seen, reviewed, and published.</p>
+        <h2 class="pm-title">Academic Publishing & Peer Review</h2>
+        <p class="pm-subtitle">Your ideas deserve to be seen, reviewed, and published globally.</p>
 
-        <div class="pm-grid-2">
-          <div class="pm-glass-card pm-identity-card" style="border-top-color: #c9913a;">
-            <h3 style="font-family:'Cormorant Garamond', serif; font-size:24px; color:#f2ede4; margin-bottom:8px;">You Are Ready to Publish</h3>
-            <p style="font-size:14px; color:#a39e93; font-weight:300; line-height:1.5;">You have learned, practiced, researched, and written. Now you step into the world of academic publishing and global contribution.</p>
-            <div class="pm-progress-wrap">
-              <div class="pm-progress-label"><span>Phase 4 Finalization</span> <span>Day 28 of 30</span></div>
-              <div class="pm-progress-bar"><div class="pm-progress-fill" style="width: 95%; background: #c9913a; box-shadow: 0 0 15px rgba(201,145,58,0.8);"></div></div>
-            </div>
-            <ul class="pm-checklist">
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Research writing</li>
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Academic formatting</li>
-              <li><i class="fas fa-check-circle" style="color:#c9913a;"></i> Publishing readiness</li>
-            </ul>
-          </div>
-
-          <div class="pm-glass-card pm-ai-card">
-            <div class="pm-ai-header">
-              <div class="pm-ai-icon" style="background:#c9913a; box-shadow: 0 0 15px rgba(201,145,58,0.4);"><i class="fas fa-globe" style="color:#0a0f0d;"></i></div>
-              <div class="pm-ai-title" style="color:#e4c870;">Your AI Publishing Assistant</div>
-            </div>
-            <p style="font-size:13px; color:#e0dcd3; font-weight:300; line-height:1.5;">Understand journals, the submission process, and peer review. Ask me how to navigate the complex world of academia.</p>
-            <div class="pm-ai-btns">
-              <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='How do I submit a paper to an academic journal?'; toggleAI();">
-                How to submit a paper? <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-              </button>
-              <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Explain the peer review process in simple terms.'; toggleAI();">
-                Explain peer review <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <h2 class="pm-section-title" style="margin-top: 48px; border-bottom:none; text-align:center;"><i class="fas fa-route" style="margin-right:8px; color:#0d5e3a;"></i> From Idea to Publication</h2>
-        <div class="pm-loop-wrap" style="flex-wrap: wrap; justify-content: center; gap: 8px;">
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px;"><i class="fas fa-lightbulb" style="font-size:18px;"></i><h4 style="font-size:13px;">1. Idea</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px;"><i class="fas fa-microscope" style="font-size:18px;"></i><h4 style="font-size:13px;">2. Research</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px;"><i class="fas fa-keyboard" style="font-size:18px;"></i><h4 style="font-size:13px;">3. Writing</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px;"><i class="fas fa-highlighter" style="font-size:18px;"></i><h4 style="font-size:13px;">4. Editing</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px;"><i class="fas fa-upload" style="font-size:18px;"></i><h4 style="font-size:13px;">5. Submit</h4></div>
-          <i class="fas fa-chevron-right pm-loop-arrow" style="font-size:12px; align-self: center;"></i>
-          <div class="pm-loop-step" style="padding: 16px 8px; flex: 1 1 100px; border-color: #c9913a; background: rgba(201,145,58,0.05);"><i class="fas fa-globe-americas" style="font-size:18px;"></i><h4 style="font-size:13px; color:#c9913a;">6. Publish</h4></div>
-        </div>
-
-        <h2 class="pm-section-title" style="margin-top: 56px;"><i class="fas fa-file-export" style="margin-right:8px; color:#0d5e3a;"></i> Submit Your Work</h2>
+        <h2 class="pm-section-title" style="margin-top: 48px;"><i class="fas fa-file-export" style="margin-right:8px; color:#0d5e3a;"></i> Submit Your Work</h2>
         <div class="pm-grid-2">
           <div class="pm-glass-card pm-tool-card">
             <h3>The Submission Process</h3>
@@ -443,18 +327,15 @@
               <li><strong>1. Choose journal:</strong> Match your topic scope.</li>
               <li><strong>2. Format your paper:</strong> Follow strict guidelines.</li>
               <li><strong>3. Submit online:</strong> Use their portal.</li>
-              <li><strong>4. Wait for review:</strong> Can take weeks to months.</li>
             </ul>
           </div>
           <div class="pm-glass-card pm-tool-card">
             <h3>Major Publishers</h3>
             <p class="pm-tool-desc">Familiarize yourself with major academic publishing houses.</p>
             <div class="pm-tool-meta" style="margin-bottom: 16px;">
-              <div class="pm-meta-title">Elsevier</div>
               <a href="https://www.elsevier.com/" target="_blank" style="color:#c9913a; text-decoration:none; font-size:12px; font-weight:600;">Visit Elsevier <i class="fas fa-external-link-alt"></i></a>
             </div>
             <div class="pm-tool-meta">
-              <div class="pm-meta-title">Springer</div>
               <a href="https://www.springer.com/" target="_blank" style="color:#c9913a; text-decoration:none; font-size:12px; font-weight:600;">Visit Springer <i class="fas fa-external-link-alt"></i></a>
             </div>
           </div>
@@ -469,66 +350,25 @@
           <div class="pm-grid-2" style="margin-top: 12px; gap: 16px;">
             <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:8px; border-left:3px solid #4ade80;">
               <h5 style="margin:0 0 4px 0; color:#4ade80;"><i class="fas fa-check-circle"></i> Accepted</h5>
-              <p style="font-size:12px; color:#a39e93; margin:0;">Ready to publish as is.</p>
             </div>
             <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:8px; border-left:3px solid #e4c870;">
               <h5 style="margin:0 0 4px 0; color:#e4c870;"><i class="fas fa-edit"></i> Minor Revision</h5>
-              <p style="font-size:12px; color:#a39e93; margin:0;">Small formatting changes needed.</p>
             </div>
             <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:8px; border-left:3px solid #f39c12;">
               <h5 style="margin:0 0 4px 0; color:#f39c12;"><i class="fas fa-sync"></i> Major Revision</h5>
-              <p style="font-size:12px; color:#a39e93; margin:0;">Significant rewrites required.</p>
             </div>
             <div style="background:rgba(255,255,255,0.05); padding:16px; border-radius:8px; border-left:3px solid #d9534f;">
               <h5 style="margin:0 0 4px 0; color:#d9534f;"><i class="fas fa-times-circle"></i> Rejected</h5>
-              <p style="font-size:12px; color:#a39e93; margin:0;">Submit elsewhere.</p>
             </div>
-          </div>
-        </div>
-
-        <h2 class="pm-section-title" style="margin-top: 48px;"><i class="fas fa-door-open" style="margin-right:8px; color:#0d5e3a;"></i> Open Access & Global Reach</h2>
-        <div class="pm-grid-2">
-          <div class="pm-glass-card pm-tool-card">
-            <h3>DOAJ</h3>
-            <p class="pm-tool-desc">The Directory of Open Access Journals guarantees global visibility without paywalls.</p>
-            <a href="https://doaj.org/" target="_blank" class="pm-btn-primary" style="background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1);">Explore DOAJ</a>
-          </div>
-          <div class="pm-glass-card pm-tool-card">
-            <h3>ResearchGate</h3>
-            <p class="pm-tool-desc">The premier social network for scientists and researchers to share papers.</p>
-            <a href="https://www.researchgate.net/" target="_blank" class="pm-btn-primary" style="background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1);">Join ResearchGate</a>
           </div>
         </div>
 
         <div class="pm-grid-2" style="margin-top:40px;">
-          <div style="display:flex; flex-direction:column; gap:24px;">
-            <div class="pm-glass-card">
-              <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin-bottom:20px;"><i class="fas fa-clipboard-check" style="color:#0d5e3a; margin-right:8px;"></i> Your Final Task (Day 28)</h4>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Choose a final topic for publication.</span></label>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Write a structured article.</span></label>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Format properly.</span></label>
-              <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Identify 1 real academic journal.</span></label>
-            </div>
-            <div class="pm-glass-card" style="border-left:3px solid #c9913a;">
-              <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin:0 0 16px 0;">Author's Advice</h4>
-              <ul style="margin:0 0 0 16px; padding:0; color:#e0dcd3; font-size:14px; font-weight:300; line-height:1.6;">
-                <li style="margin-bottom:8px;"><strong>Follow guidelines strictly.</strong></li>
-                <li style="margin-bottom:8px;"><strong>Be patient.</strong> The review process is slow.</li>
-                <li><strong>Accept feedback positively.</strong></li>
-              </ul>
-            </div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:24px;">
-            <div class="pm-glass-card" style="display:flex; flex-direction:column; height: 100%;">
-              <h4 style="font-family:'Cormorant Garamond', serif; font-size:22px; color:#f2ede4; margin-bottom:4px;"><i class="fas fa-layer-group" style="color:#0d5e3a; margin-right:8px;"></i> Publishing Toolkit</h4>
-              <div class="pm-tk-cat">📄 Submission Platforms</div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Elsevier Journals</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-item"><span class="pm-tk-name">Springer Journals</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-cat">🌍 Open Access & Networks</div>
-              <div class="pm-tk-item"><span class="pm-tk-name">DOAJ Database</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <div class="pm-tk-item"><span class="pm-tk-name">ResearchGate Profile</span><i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i></div>
-              <button class="pm-toolkit-btn" onclick="alert('Launching Submission Workflow...');" style="margin-top: auto;"><i class="fas fa-paper-plane" style="margin-right:6px;"></i> Start Submission Journey</button>
-            </div>
+          <div class="pm-glass-card">
+            <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin-bottom:20px;"><i class="fas fa-clipboard-check" style="color:#0d5e3a; margin-right:8px;"></i> Your Final Task (Day 28)</h4>
+            <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Choose a final topic for publication.</span></label>
+            <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Write a structured article.</span></label>
+            <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Format properly and identify 1 journal.</span></label>
           </div>
         </div>
 
@@ -540,7 +380,7 @@
           <h2 style="font-family:'Cormorant Garamond', serif; font-size:40px; color:#e4c870; margin-bottom: 16px; font-weight: 700; letter-spacing: 0.02em;">You Are Now a Peregrine Scholar</h2>
           
           <p style="font-size:16px; color:#e0dcd3; max-width:650px; margin: 0 auto 40px auto; font-weight:300; line-height: 1.6;">
-            You started as a learner. You explored digital tools, practiced languages, analyzed complex data, and created original research. Now, you are ready to contribute your knowledge to the world. <br><br><strong style="color:#c9913a;">Welcome to the vanguard of academia.</strong>
+            You started as a learner. You explored digital tools, practiced languages, analyzed data, and created original research. Now, you are ready to contribute your knowledge to the world. <br><br><strong style="color:#c9913a;">Welcome to the vanguard of academia.</strong>
           </p>
 
           <div style="max-width: 500px; margin: 0 auto 40px auto; background: #f2ede4; border: 8px solid #0d5e3a; border-radius: 4px; padding: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); position: relative;">
@@ -564,9 +404,6 @@
           <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
             <button class="pm-btn-primary" onclick="alert('Generating your secure PDF Certificate...')" style="padding: 16px 32px; font-size: 15px; border-radius: 50px; background: linear-gradient(135deg, #c9913a, #e4c870); color:#0a0f0d; border:none; cursor:pointer; box-shadow: 0 10px 20px rgba(201,145,58,0.3); font-weight: 700; display:flex; align-items:center; gap:8px;">
               <i class="fas fa-download"></i> Download Certificate
-            </button>
-            <button class="pm-btn-primary" onclick="alert('Opening LinkedIn sharing module...')" style="padding: 16px 32px; font-size: 15px; border-radius: 50px; background: #0077b5; color:#fff; border:none; cursor:pointer; box-shadow: 0 10px 20px rgba(0,119,181,0.3); font-weight: 700; display:flex; align-items:center; gap:8px;">
-              <i class="fab fa-linkedin"></i> Share on LinkedIn
             </button>
           </div>
         </div>
@@ -606,7 +443,6 @@ function authenticate() {
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
   if(!email) return;
-  
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
   btn.disabled = true;
   err.style.display = 'none';
@@ -629,23 +465,18 @@ function authenticate() {
       }
     });
 }
-
 function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
-
 function sendPrompt() {
   const input = document.getElementById('ai-prompt');
   const text = input.value.trim();
   if(!text) return;
-  
   const chatBox = document.getElementById('chat-box');
   chatBox.innerHTML += `<div class="ai-msg-wrap" style="flex-direction:row-reverse;"><div class="ai-av user">👤</div><div class="ai-bub user">${text}</div></div>`;
   input.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
-  
   const loadId = 'load-' + Date.now();
   chatBox.innerHTML += `<div class="ai-msg-wrap" id="${loadId}"><div class="ai-av bot">🧠</div><div class="ai-bub bot"><i class="fas fa-ellipsis-h fa-fade"></i></div></div>`;
   chatBox.scrollTop = chatBox.scrollHeight;
-  
   fetch(`${API_URL}?action=chat&email=${encodeURIComponent(currentUserEmail)}&q=${encodeURIComponent(text)}`)
     .then(res => res.json())
     .then(data => {
@@ -659,9 +490,8 @@ function sendPrompt() {
       chatBox.scrollTop = chatBox.scrollHeight;
     });
 }
-
 function openLogModal() {
-  const logContent = prompt(`Submit your reflection for Module 4:`);
+  const logContent = prompt(`Submit your reflection:`);
   if (!logContent) return;
   fetch(`${API_URL}?action=log_progress&email=${encodeURIComponent(currentUserEmail)}&day=25&content=${encodeURIComponent(logContent)}`)
     .then(res => res.json())
@@ -670,7 +500,6 @@ function openLogModal() {
       else alert("Error: " + data.error);
     });
 }
-
 function clockIn() {
   const btn = document.getElementById('btn-clockin');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging...';
@@ -687,13 +516,11 @@ function clockIn() {
       }
     });
 }
-
 function uploadDocument(input) {
   if (!input.files || input.files.length === 0) return;
   const file = input.files[0];
   const docType = prompt("What assignment or document is this?");
   if (!docType) { input.value = ''; return; }
-
   alert("Uploading " + file.name + " securely to Peregrine Drive. This may take a moment...");
   const reader = new FileReader();
   reader.onload = function(e) {
@@ -709,16 +536,6 @@ function uploadDocument(input) {
   };
   reader.readAsDataURL(file);
 }
-
-function togglePmBookmark(element) {
-  if (element.classList.contains('far')) {
-    element.classList.remove('far'); element.classList.add('fas', 'saved');
-  } else {
-    element.classList.remove('fas', 'saved'); element.classList.add('far');
-  }
-}
-
-// Certificate name script
 document.addEventListener("DOMContentLoaded", () => {
   const observer = new MutationObserver(() => {
     const userNameEl = document.getElementById('user-name');
