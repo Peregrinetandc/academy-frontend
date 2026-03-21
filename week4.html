@@ -236,7 +236,39 @@
           </button>
         </div>
       </div>
+<style>
+  /* Reuses the core PCX variables, but compressed for weekly context */
+  .pcw-banner { background: linear-gradient(90deg, rgba(10,15,13,0.9) 0%, rgba(13,94,58,0.2) 100%); border: 1px solid rgba(201,145,58,0.3); border-radius: 12px; padding: 24px; margin-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; }
+  .pcw-info { flex: 1; min-width: 250px; }
+  .pcw-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #e4c870; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .pcw-desc { font-size: 13px; color: #e0dcd3; font-weight: 300; font-family: 'Outfit', sans-serif; line-height: 1.5; }
+  .pcw-activities { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pcw-badge { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; color: #f2ede4; display: flex; align-items: center; gap: 8px; cursor: default; transition: background 0.2s; }
+  .pcw-badge:hover { background: rgba(201,145,58,0.15); border-color: rgba(201,145,58,0.4); color: #e4c870; }
+  .pcw-badge i { color: #4ade80; }
+</style>
 
+<div class="pcw-banner">
+  <div class="pcw-info">
+    <h3 class="pcw-title"><i class="fas fa-university"></i> Campus Activities for This Week</h3>
+    <p class="pcw-desc">You are not just studying content; you are participating in the Peregrine Campus. Complete these required activities to finalize this module's requirements.</p>
+  </div>
+  
+  <div class="pcw-activities">
+    <div class="pcw-badge" title="Coordinate with your team on the public speaking project.">
+      <i class="fas fa-users"></i> Group Project Setup
+    </div>
+    <div class="pcw-badge" title="Record and submit your 1-minute speech for review.">
+      <i class="fas fa-microphone"></i> Speaking Assignment
+    </div>
+    <div class="pcw-badge" title="Join the Friday Q&A with our Communications Expert.">
+      <i class="fas fa-user-tie" style="color:#c9913a;"></i> Live Guest Lecture
+    </div>
+    <div class="pcw-badge" onclick="openLogModal()" style="cursor: pointer; border-color: #0d5e3a; background: rgba(13,94,58,0.1);">
+      <i class="fas fa-pen"></i> Submit Daily Journal
+    </div>
+  </div>
+</div>
       <div class="pm-wrapper" style="margin-top: 0; margin-bottom: 0;">
         <div class="pm-header-badge" style="border-color: rgba(201,145,58,0.8); color: #e4c870; background: rgba(201,145,58,0.15);">
           <i class="fas fa-graduation-cap"></i> Peregriner Final Stage — Scholar Mode
