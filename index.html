@@ -93,6 +93,202 @@
   .ai-input-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,94,58,0.5); }
   @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+  <style>
+  /* ── PEREGRINE CAMPUS (PCX) SYSTEM CSS ── */
+  .pc-wrapper { background: #0a0f0d; background-image: radial-gradient(circle at 10% 90%, rgba(201,145,58,0.08) 0%, transparent 60%), radial-gradient(circle at 90% 10%, rgba(13,94,58,0.12) 0%, transparent 60%); color: #f2ede4; font-family: 'Outfit', sans-serif; border-radius: 16px; padding: 40px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  .pc-header { text-align: center; margin-bottom: 40px; }
+  .pc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(13,94,58,0.2); border: 1px solid rgba(13,94,58,0.5); color: #4ade80; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+  .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; color: #f2ede4; margin-bottom: 8px; }
+  .pc-subtitle { font-size: 16px; color: #a39e93; font-weight: 300; letter-spacing: 0.02em; }
+  
+  .pc-glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+  .pc-glass-card:hover { border-color: rgba(201,145,58,0.3); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); background: rgba(255,255,255,0.04); }
+  
+  .pc-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .pc-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+  
+  /* Progress Dashboard */
+  .pc-progress-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 40px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
+  .pc-stat { padding: 12px; }
+  .pc-stat-title { font-size: 11px; text-transform: uppercase; color: #a39e93; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .pc-stat-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #c9913a; margin-bottom: 8px; font-weight: 700; line-height: 1; }
+  .pc-bar-bg { height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+  .pc-bar-fill { height: 100%; background: #0d5e3a; box-shadow: 0 0 8px rgba(13,94,58,0.8); }
+  .pc-bar-fill.gold { background: #c9913a; box-shadow: 0 0 8px rgba(201,145,58,0.8); }
+
+  /* Card Inner Elements */
+  .pc-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .pc-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(13,94,58,0.15); color: #4ade80; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(13,94,58,0.3); }
+  .pc-icon.gold { background: rgba(201,145,58,0.15); color: #e4c870; border-color: rgba(201,145,58,0.3); }
+  .pc-status { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); color: #a39e93; letter-spacing: 0.05em; }
+  .pc-status.live { background: rgba(201,145,58,0.15); color: #e4c870; border: 1px solid rgba(201,145,58,0.3); }
+  .pc-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #f2ede4; margin-bottom: 8px; font-weight: 600; }
+  .pc-card-desc { font-size: 13px; color: #a39e93; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+  
+  /* Actions */
+  .pc-actions { display: flex; gap: 8px; margin-top: auto; }
+  .pc-btn { flex: 1; text-align: center; padding: 10px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: none; font-family: 'Outfit', sans-serif; }
+  .pc-btn-primary { background: #c9913a; color: #0a0f0d; }
+  .pc-btn-primary:hover { background: #e4c870; box-shadow: 0 4px 12px rgba(201,145,58,0.3); }
+  .pc-btn-secondary { background: rgba(255,255,255,0.05); color: #f2ede4; border: 1px solid rgba(255,255,255,0.1); }
+  .pc-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  
+  /* AI Campus Guide Special Card */
+  .pc-ai-card { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(13,94,58,0.15) 0%, rgba(0,0,0,0.4) 100%); border: 1px solid #0d5e3a; display: flex; flex-direction: row; align-items: center; gap: 32px; padding: 32px; margin-top: 20px; }
+  @media(max-width: 768px) { .pc-ai-card { flex-direction: column; text-align: center; gap: 20px; } }
+</style>
+
+<div class="pc-wrapper">
+  
+  <div class="pc-header">
+    <div class="pc-badge"><i class="fas fa-university"></i> Peregrine Campus Experience</div>
+    <h2 class="pc-title">The Campus Ecosystem</h2>
+    <p class="pc-subtitle">Learn. Practice. Collaborate. Grow.</p>
+  </div>
+
+  
+
+  <div class="pc-progress-dashboard">
+    <div class="pc-stat">
+      <div class="pc-stat-title"><i class="fas fa-chalkboard-teacher"></i> Mentorship</div>
+      <div class="pc-stat-value">3 / 4</div>
+      <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 75%;"></div></div>
+    </div>
+    <div class="pc-stat">
+      <div class="pc-stat-title"><i class="fas fa-users-cog"></i> Projects</div>
+      <div class="pc-stat-value">2 / 4</div>
+      <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 50%;"></div></div>
+    </div>
+    <div class="pc-stat">
+      <div class="pc-stat-title"><i class="fas fa-tasks"></i> Assignments</div>
+      <div class="pc-stat-value">8 / 12</div>
+      <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 66%;"></div></div>
+    </div>
+    <div class="pc-stat">
+      <div class="pc-stat-title"><i class="fas fa-fire"></i> Journal Streak</div>
+      <div class="pc-stat-value">14 Days</div>
+      <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 100%;"></div></div>
+    </div>
+  </div>
+
+  <div class="pc-grid-3">
+    
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon gold"><i class="fas fa-user-tie"></i></div>
+        <div class="pc-status live"><i class="fas fa-circle fa-fade" style="font-size:8px; margin-right:4px;"></i> Upcoming Session</div>
+      </div>
+      <h3 class="pc-card-title">Mentorship Sessions</h3>
+      <p class="pc-card-desc">Weekly live sessions with experienced industry professionals to guide your learning and career trajectory.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-primary">Join Live Room</button>
+        <button class="pc-btn pc-btn-secondary"><i class="far fa-calendar-alt"></i> Schedule</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon"><i class="fas fa-project-diagram"></i></div>
+        <div style="display:flex; margin-left:auto;">
+          <div style="width:24px; height:24px; border-radius:50%; background:#c9913a; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:3;">S</div>
+          <div style="width:24px; height:24px; border-radius:50%; background:#4ade80; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:2;">A</div>
+          <div style="width:24px; height:24px; border-radius:50%; background:#e0dcd3; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:1;">+2</div>
+        </div>
+      </div>
+      <h3 class="pc-card-title">Collaborative Projects</h3>
+      <p class="pc-card-desc">Work in cross-functional teams to solve real-world problems and build your professional portfolio.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-primary">Project Workspace</button>
+        <button class="pc-btn pc-btn-secondary">Find a Team</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon gold"><i class="fas fa-building"></i></div>
+        <div class="pc-status">Archived</div>
+      </div>
+      <h3 class="pc-card-title">Industry Exposure</h3>
+      <p class="pc-card-desc">Virtual and physical visits to understand real-world corporate environments and workflows.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-secondary"><i class="fas fa-play"></i> Watch Past Visit</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon"><i class="fas fa-microphone-alt"></i></div>
+        <div class="pc-status live">Friday, 4 PM</div>
+      </div>
+      <h3 class="pc-card-title">Expert Talks</h3>
+      <p class="pc-card-desc">Learn directly from scholars, industry leaders, and tech pioneers in exclusive guest lectures.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-primary">Register</button>
+        <button class="pc-btn pc-btn-secondary">View Library</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon gold"><i class="fas fa-clipboard-check"></i></div>
+        <div class="pc-status" style="color:#e4c870;">1 Pending</div>
+      </div>
+      <h3 class="pc-card-title">Assessments</h3>
+      <p class="pc-card-desc">Track your learning retention with regular end-of-module quizzes and practical assignments.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-primary">Start Quiz</button>
+        <button class="pc-btn pc-btn-secondary">View Results</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card">
+      <div class="pc-card-header">
+        <div class="pc-icon"><i class="fas fa-sync-alt"></i></div>
+        <div class="pc-status">Awaiting Feedback</div>
+      </div>
+      <h3 class="pc-card-title">Peer Feedback</h3>
+      <p class="pc-card-desc">Improve your work and critical thinking through structured, double-blind peer review sessions.</p>
+      <div class="pc-actions">
+        <button class="pc-btn pc-btn-primary">Review Peers</button>
+        <button class="pc-btn pc-btn-secondary">My Submissions</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card" style="grid-column: 1 / -1;">
+      <div class="pc-card-header" style="margin-bottom:8px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="pc-icon gold"><i class="fas fa-book-open"></i></div>
+          <h3 class="pc-card-title" style="margin:0;">Daily Reflection Journal</h3>
+        </div>
+        <div class="pc-status live"><i class="fas fa-pen fa-fade"></i> Write Today's Entry</div>
+      </div>
+      <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; margin: 12px 0;">
+        <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; color:#a39e93; margin:0;">"Today I learned about data scraping, but I am struggling slightly with Python Pandas formatting. I will review the documentation tomorrow morning..."</p>
+      </div>
+      <div class="pc-actions" style="justify-content: flex-end;">
+        <button class="pc-btn pc-btn-secondary" style="flex:initial; padding: 10px 24px;">View Past Entries</button>
+        <button class="pc-btn pc-btn-primary" style="flex:initial; padding: 10px 24px;" onclick="openLogModal()">Write Entry</button>
+      </div>
+    </div>
+
+    <div class="pc-glass-card pc-ai-card">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #0d5e3a, #c9913a); display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 0 30px rgba(13,94,58,0.5); flex-shrink:0; position:relative;">
+        🤖
+        <div style="position:absolute; bottom:0; right:0; width:16px; height:16px; background:#4ade80; border-radius:50%; border:3px solid #0a0f0d;"></div>
+      </div>
+      <div style="flex-grow: 1;">
+        <h3 class="pc-card-title" style="color:#4ade80; font-size: 26px;">Your AI Campus Mentor</h3>
+        <p style="font-size: 14px; color: #e0dcd3; font-weight: 300; max-width: 500px; margin-bottom: 16px;">I am your personal guide across the entire Peregrine Campus. I can help you plan your week, review your assignments before submission, or prepare you for peer feedback.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Help me plan my study and project schedule for this week.'; toggleAI();">Help me plan my week</button>
+          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Can you review my latest assignment draft for formatting?'; toggleAI();">Give feedback on my work</button>
+          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='How can I improve my daily journal reflections?'; toggleAI();">Suggest improvements</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
   /* ── MODULE 1: RESEARCH REPOSITORY CSS ── */
   .repository-header { margin: 10px 0 20px; border-bottom: 2px solid var(--border); padding-bottom: 16px; }
   .repository-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
