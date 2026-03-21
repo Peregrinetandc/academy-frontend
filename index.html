@@ -17,7 +17,6 @@
   
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
-  
   .top-rule { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%); z-index: 9999; }
 
   #login-screen { position: fixed; inset: 0; background: var(--cream); display: flex; align-items: center; justify-content: center; z-index: 1000; }
@@ -34,7 +33,6 @@
   #login-error { color: var(--red); font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
 
   #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; }
-  
   .sidebar { width: 280px; background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); }
   .brand-area { padding: 24px 20px; border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 11px; }
   .brand-area .logo-emblem { margin: 0; width: 36px; height: 36px; font-size: 16px; }
@@ -42,7 +40,6 @@
   .logo-primary { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--white); line-height: 1; }
   .logo-secondary { font-size: 8px; color: rgba(201,168,76,0.6); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 3px; }
   
-  /* MULTI-PAGE NAVIGATION DROPDOWN */
   .module-navigator { padding: 20px 20px 0; }
   .module-navigator select { width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15); color: var(--white); border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; outline: none; cursor: pointer; }
   .module-navigator select option { background: var(--navy); color: var(--white); }
@@ -93,202 +90,6 @@
   .ai-input-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,94,58,0.5); }
   @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  <style>
-  /* ── PEREGRINE CAMPUS (PCX) SYSTEM CSS ── */
-  .pc-wrapper { background: #0a0f0d; background-image: radial-gradient(circle at 10% 90%, rgba(201,145,58,0.08) 0%, transparent 60%), radial-gradient(circle at 90% 10%, rgba(13,94,58,0.12) 0%, transparent 60%); color: #f2ede4; font-family: 'Outfit', sans-serif; border-radius: 16px; padding: 40px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-  .pc-header { text-align: center; margin-bottom: 40px; }
-  .pc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(13,94,58,0.2); border: 1px solid rgba(13,94,58,0.5); color: #4ade80; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
-  .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; color: #f2ede4; margin-bottom: 8px; }
-  .pc-subtitle { font-size: 16px; color: #a39e93; font-weight: 300; letter-spacing: 0.02em; }
-  
-  .pc-glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; transition: all 0.3s ease; display: flex; flex-direction: column; }
-  .pc-glass-card:hover { border-color: rgba(201,145,58,0.3); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); background: rgba(255,255,255,0.04); }
-  
-  .pc-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-  .pc-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-  
-  /* Progress Dashboard */
-  .pc-progress-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 40px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
-  .pc-stat { padding: 12px; }
-  .pc-stat-title { font-size: 11px; text-transform: uppercase; color: #a39e93; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-  .pc-stat-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #c9913a; margin-bottom: 8px; font-weight: 700; line-height: 1; }
-  .pc-bar-bg { height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
-  .pc-bar-fill { height: 100%; background: #0d5e3a; box-shadow: 0 0 8px rgba(13,94,58,0.8); }
-  .pc-bar-fill.gold { background: #c9913a; box-shadow: 0 0 8px rgba(201,145,58,0.8); }
-
-  /* Card Inner Elements */
-  .pc-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .pc-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(13,94,58,0.15); color: #4ade80; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(13,94,58,0.3); }
-  .pc-icon.gold { background: rgba(201,145,58,0.15); color: #e4c870; border-color: rgba(201,145,58,0.3); }
-  .pc-status { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); color: #a39e93; letter-spacing: 0.05em; }
-  .pc-status.live { background: rgba(201,145,58,0.15); color: #e4c870; border: 1px solid rgba(201,145,58,0.3); }
-  .pc-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #f2ede4; margin-bottom: 8px; font-weight: 600; }
-  .pc-card-desc { font-size: 13px; color: #a39e93; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
-  
-  /* Actions */
-  .pc-actions { display: flex; gap: 8px; margin-top: auto; }
-  .pc-btn { flex: 1; text-align: center; padding: 10px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: none; font-family: 'Outfit', sans-serif; }
-  .pc-btn-primary { background: #c9913a; color: #0a0f0d; }
-  .pc-btn-primary:hover { background: #e4c870; box-shadow: 0 4px 12px rgba(201,145,58,0.3); }
-  .pc-btn-secondary { background: rgba(255,255,255,0.05); color: #f2ede4; border: 1px solid rgba(255,255,255,0.1); }
-  .pc-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
-  
-  /* AI Campus Guide Special Card */
-  .pc-ai-card { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(13,94,58,0.15) 0%, rgba(0,0,0,0.4) 100%); border: 1px solid #0d5e3a; display: flex; flex-direction: row; align-items: center; gap: 32px; padding: 32px; margin-top: 20px; }
-  @media(max-width: 768px) { .pc-ai-card { flex-direction: column; text-align: center; gap: 20px; } }
-</style>
-
-<div class="pc-wrapper">
-  
-  <div class="pc-header">
-    <div class="pc-badge"><i class="fas fa-university"></i> Peregrine Campus Experience</div>
-    <h2 class="pc-title">The Campus Ecosystem</h2>
-    <p class="pc-subtitle">Learn. Practice. Collaborate. Grow.</p>
-  </div>
-
-  
-
-  <div class="pc-progress-dashboard">
-    <div class="pc-stat">
-      <div class="pc-stat-title"><i class="fas fa-chalkboard-teacher"></i> Mentorship</div>
-      <div class="pc-stat-value">3 / 4</div>
-      <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 75%;"></div></div>
-    </div>
-    <div class="pc-stat">
-      <div class="pc-stat-title"><i class="fas fa-users-cog"></i> Projects</div>
-      <div class="pc-stat-value">2 / 4</div>
-      <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 50%;"></div></div>
-    </div>
-    <div class="pc-stat">
-      <div class="pc-stat-title"><i class="fas fa-tasks"></i> Assignments</div>
-      <div class="pc-stat-value">8 / 12</div>
-      <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 66%;"></div></div>
-    </div>
-    <div class="pc-stat">
-      <div class="pc-stat-title"><i class="fas fa-fire"></i> Journal Streak</div>
-      <div class="pc-stat-value">14 Days</div>
-      <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 100%;"></div></div>
-    </div>
-  </div>
-
-  <div class="pc-grid-3">
-    
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon gold"><i class="fas fa-user-tie"></i></div>
-        <div class="pc-status live"><i class="fas fa-circle fa-fade" style="font-size:8px; margin-right:4px;"></i> Upcoming Session</div>
-      </div>
-      <h3 class="pc-card-title">Mentorship Sessions</h3>
-      <p class="pc-card-desc">Weekly live sessions with experienced industry professionals to guide your learning and career trajectory.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-primary">Join Live Room</button>
-        <button class="pc-btn pc-btn-secondary"><i class="far fa-calendar-alt"></i> Schedule</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon"><i class="fas fa-project-diagram"></i></div>
-        <div style="display:flex; margin-left:auto;">
-          <div style="width:24px; height:24px; border-radius:50%; background:#c9913a; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:3;">S</div>
-          <div style="width:24px; height:24px; border-radius:50%; background:#4ade80; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:2;">A</div>
-          <div style="width:24px; height:24px; border-radius:50%; background:#e0dcd3; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:1;">+2</div>
-        </div>
-      </div>
-      <h3 class="pc-card-title">Collaborative Projects</h3>
-      <p class="pc-card-desc">Work in cross-functional teams to solve real-world problems and build your professional portfolio.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-primary">Project Workspace</button>
-        <button class="pc-btn pc-btn-secondary">Find a Team</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon gold"><i class="fas fa-building"></i></div>
-        <div class="pc-status">Archived</div>
-      </div>
-      <h3 class="pc-card-title">Industry Exposure</h3>
-      <p class="pc-card-desc">Virtual and physical visits to understand real-world corporate environments and workflows.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-secondary"><i class="fas fa-play"></i> Watch Past Visit</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon"><i class="fas fa-microphone-alt"></i></div>
-        <div class="pc-status live">Friday, 4 PM</div>
-      </div>
-      <h3 class="pc-card-title">Expert Talks</h3>
-      <p class="pc-card-desc">Learn directly from scholars, industry leaders, and tech pioneers in exclusive guest lectures.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-primary">Register</button>
-        <button class="pc-btn pc-btn-secondary">View Library</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon gold"><i class="fas fa-clipboard-check"></i></div>
-        <div class="pc-status" style="color:#e4c870;">1 Pending</div>
-      </div>
-      <h3 class="pc-card-title">Assessments</h3>
-      <p class="pc-card-desc">Track your learning retention with regular end-of-module quizzes and practical assignments.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-primary">Start Quiz</button>
-        <button class="pc-btn pc-btn-secondary">View Results</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card">
-      <div class="pc-card-header">
-        <div class="pc-icon"><i class="fas fa-sync-alt"></i></div>
-        <div class="pc-status">Awaiting Feedback</div>
-      </div>
-      <h3 class="pc-card-title">Peer Feedback</h3>
-      <p class="pc-card-desc">Improve your work and critical thinking through structured, double-blind peer review sessions.</p>
-      <div class="pc-actions">
-        <button class="pc-btn pc-btn-primary">Review Peers</button>
-        <button class="pc-btn pc-btn-secondary">My Submissions</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card" style="grid-column: 1 / -1;">
-      <div class="pc-card-header" style="margin-bottom:8px;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div class="pc-icon gold"><i class="fas fa-book-open"></i></div>
-          <h3 class="pc-card-title" style="margin:0;">Daily Reflection Journal</h3>
-        </div>
-        <div class="pc-status live"><i class="fas fa-pen fa-fade"></i> Write Today's Entry</div>
-      </div>
-      <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; margin: 12px 0;">
-        <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; color:#a39e93; margin:0;">"Today I learned about data scraping, but I am struggling slightly with Python Pandas formatting. I will review the documentation tomorrow morning..."</p>
-      </div>
-      <div class="pc-actions" style="justify-content: flex-end;">
-        <button class="pc-btn pc-btn-secondary" style="flex:initial; padding: 10px 24px;">View Past Entries</button>
-        <button class="pc-btn pc-btn-primary" style="flex:initial; padding: 10px 24px;" onclick="openLogModal()">Write Entry</button>
-      </div>
-    </div>
-
-    <div class="pc-glass-card pc-ai-card">
-      <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #0d5e3a, #c9913a); display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 0 30px rgba(13,94,58,0.5); flex-shrink:0; position:relative;">
-        🤖
-        <div style="position:absolute; bottom:0; right:0; width:16px; height:16px; background:#4ade80; border-radius:50%; border:3px solid #0a0f0d;"></div>
-      </div>
-      <div style="flex-grow: 1;">
-        <h3 class="pc-card-title" style="color:#4ade80; font-size: 26px;">Your AI Campus Mentor</h3>
-        <p style="font-size: 14px; color: #e0dcd3; font-weight: 300; max-width: 500px; margin-bottom: 16px;">I am your personal guide across the entire Peregrine Campus. I can help you plan your week, review your assignments before submission, or prepare you for peer feedback.</p>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Help me plan my study and project schedule for this week.'; toggleAI();">Help me plan my week</button>
-          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Can you review my latest assignment draft for formatting?'; toggleAI();">Give feedback on my work</button>
-          <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='How can I improve my daily journal reflections?'; toggleAI();">Suggest improvements</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
   /* ── MODULE 1: RESEARCH REPOSITORY CSS ── */
   .repository-header { margin: 10px 0 20px; border-bottom: 2px solid var(--border); padding-bottom: 16px; }
   .repository-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
@@ -340,258 +141,8 @@
   .tk-save { color: #d1d5db; cursor: pointer; transition: all 0.2s; font-size: 18px; padding: 4px; }
   .tk-save:hover { color: var(--gold); transform: scale(1.1); }
   .tk-save.saved { color: var(--gold); font-weight: 900; }
-<div class="pm-wrapper" style="margin-top: 40px; margin-bottom: 0;">
-  
-  <div class="pm-header-badge" style="border-color: rgba(201,145,58,0.6); color: #e4c870;">
-    <i class="fas fa-hammer"></i> Peregriner Level 2 — Skill Builder Mode
-  </div>
-  <h2 class="pm-title">Week 2: Skill Development Workshops</h2>
-  <p class="pm-subtitle">Skills turn knowledge into results. Transform into a high-performing professional.</p>
 
-  <div class="pm-grid-2">
-    
-    <div class="pm-glass-card pm-identity-card">
-      <h3 style="font-family:'Cormorant Garamond', serif; font-size:24px; color:#f2ede4; margin-bottom:8px;">You Are Becoming a Performer</h3>
-      <p style="font-size:14px; color:#a39e93; font-weight:300; line-height:1.5;">Knowledge alone is not enough. This week, you learn how to actively apply it to solve problems, communicate effectively, and manage your time like a professional.</p>
-      
-      <div class="pm-progress-wrap">
-        <div class="pm-progress-label"><span>Phase 2 Immersion</span> <span>Day 10 of 30</span></div>
-        <div class="pm-progress-bar"><div class="pm-progress-fill" style="width: 33%;"></div></div>
-      </div>
-      
-      <div style="font-size: 11px; text-transform: uppercase; color: #c9913a; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600;">Skills Unlocked</div>
-      <ul class="pm-checklist">
-        <li><i class="fas fa-check-circle"></i> Productivity & Time Management</li>
-        <li><i class="fas fa-check-circle"></i> Effective Communication</li>
-        <li><i class="fas fa-check-circle"></i> Critical Thinking</li>
-        <li><i class="fas fa-circle" style="color:rgba(255,255,255,0.2);"></i> Creative Writing</li>
-      </ul>
-    </div>
-
-    <div class="pm-glass-card pm-ai-card">
-      <div class="pm-ai-header">
-        <div class="pm-ai-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-        <div class="pm-ai-title">Your AI Skill Coach</div>
-      </div>
-      <p style="font-size:13px; color:#e0dcd3; font-weight:300; line-height:1.5;">Train, practice, and refine your real-world skills. I am here to evaluate your approaches and provide immediate, constructive feedback.</p>
-      
-      <div class="pm-ai-btns">
-        <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Help me create a time management plan for today.'; toggleAI();">
-          Help me manage time <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-        </button>
-        <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='I will paste a 1-minute speech. Please evaluate its structure.'; toggleAI();">
-          Evaluate my speech <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-        </button>
-        <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Give me a workplace problem-solving scenario to test my critical thinking.'; toggleAI();">
-          Give me problem-solving tasks <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-        </button>
-        <button class="pm-ai-btn" onclick="document.getElementById('ai-prompt').value='Review this paragraph and make it sound more professional.'; toggleAI();">
-          Improve my writing <i class="fas fa-arrow-right" style="color:#7a7060; font-size:10px;"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <h2 class="pm-section-title" style="margin-top: 48px;">Core Skill Workshops</h2>
-  <div class="pm-grid-2">
-    
-    <div class="pm-glass-card pm-tool-card">
-      <h3><i class="fas fa-stopwatch" style="color:#0d5e3a; margin-right:8px;"></i> Master Your Time</h3>
-      <p class="pm-tool-desc">Professional success is deeply tied to how you manage the 24 hours you are given. Focus is your ultimate currency.</p>
-      
-      
-      
-      <div class="pm-tool-meta">
-        <div class="pm-meta-title">Core Concepts</div>
-        <div class="pm-meta-text"><strong>Pomodoro Technique:</strong> 25 minutes of deep focus, 5 minutes of rest.<br><strong>Eisenhower Matrix:</strong> Separate the Urgent from the Important.</div>
-      </div>
-      <div class="pm-meta-title">How to use</div>
-      <ul class="pm-tool-steps">
-        <li>1. Plan your day the night before</li>
-        <li>2. Break large projects into micro-tasks</li>
-        <li>3. Focus in uninterrupted short sessions</li>
-      </ul>
-      <div style="display:flex; gap:10px; margin-top:20px;">
-        <a href="https://calendar.google.com/" target="_blank" class="pm-btn-primary" style="flex:1; background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1); font-size:12px;">Google Calendar</a>
-        <a href="https://www.notion.so/" target="_blank" class="pm-btn-primary" style="flex:1; background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1); font-size:12px;">Notion</a>
-      </div>
-    </div>
-
-    <div class="pm-glass-card pm-tool-card">
-      <h3><i class="fas fa-microphone-alt" style="color:#0d5e3a; margin-right:8px;"></i> Speak with Confidence</h3>
-      <p class="pm-tool-desc">Whether presenting to a client or speaking in a meeting, your delivery matters just as much as your data.</p>
-      <div class="pm-tool-meta">
-        <div class="pm-meta-title">The Perfect Structure</div>
-        <div class="pm-meta-text"><strong>Intro:</strong> Hook the audience.<br><strong>Body:</strong> 3 core supporting points.<br><strong>Conclusion:</strong> Call to action & summary.</div>
-      </div>
-      <div class="pm-meta-title">Practice Ideas</div>
-      <ul class="pm-tool-steps">
-        <li>Record yourself delivering a 2-minute topic</li>
-        <li>Watch the playback on mute to analyze body language</li>
-        <li>Focus on eliminating "umms" and filler words</li>
-      </ul>
-      <div style="display:flex; gap:10px; margin-top:20px;">
-        <a href="https://www.canva.com/" target="_blank" class="pm-btn-primary" style="flex:1; background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1); font-size:12px;">Canva</a>
-        <a href="https://slides.google.com/" target="_blank" class="pm-btn-primary" style="flex:1; background:rgba(255,255,255,0.05); color:#f2ede4; border:1px solid rgba(255,255,255,0.1); font-size:12px;">Google Slides</a>
-      </div>
-    </div>
-
-    <div class="pm-glass-card pm-tool-card">
-      <h3><i class="fas fa-brain" style="color:#0d5e3a; margin-right:8px;"></i> Think Clearly. Solve Smart.</h3>
-      <p class="pm-tool-desc">Great professionals don't just execute tasks; they identify root causes and design logical solutions.</p>
-      
-      
-      
-      <div class="pm-tool-meta" style="border-left:2px solid #c9913a;">
-        <div class="pm-meta-title">Example Breakdown</div>
-        <div class="pm-meta-text"><em>"Why do students fail exams?"</em><br>→ Is it lack of time? (Planning issue)<br>→ Is it lack of understanding? (Resource issue)<br>→ Is it test anxiety? (Psychological issue)</div>
-      </div>
-      <div class="pm-meta-title">Mini Exercise</div>
-      <ul class="pm-tool-steps">
-        <li>Analyze a real problem in your current workflow</li>
-        <li>Ask "Why?" five times to find the root cause</li>
-        <li>Suggest 3 actionable solutions</li>
-      </ul>
-    </div>
-
-    <div class="pm-glass-card pm-tool-card">
-      <h3><i class="fas fa-pen-nib" style="color:#0d5e3a; margin-right:8px;"></i> Express with Impact</h3>
-      <p class="pm-tool-desc">Writing is thinking formalized. Clear writing leads to clear communication across all business mediums.</p>
-      <div class="pm-tool-meta">
-        <div class="pm-meta-title">Storytelling Mechanics</div>
-        <div class="pm-meta-text"><strong>Beginning:</strong> Establish the status quo.<br><strong>Conflict:</strong> Introduce the problem/tension.<br><strong>Resolution:</strong> Provide the solution/lesson.</div>
-      </div>
-      <div class="pm-meta-title">Practice</div>
-      <ul class="pm-tool-steps">
-        <li>Write a 100-word story about overcoming a hurdle</li>
-        <li>Translate a professional paragraph into Arabic</li>
-        <li>Edit your draft to remove 20% of unnecessary words</li>
-      </ul>
-    </div>
-  </div>
-
-  <h2 class="pm-section-title" style="margin-top: 48px; border-bottom:none; text-align:center;"><i class="fas fa-layer-group" style="margin-right:8px; color:#0d5e3a;"></i> Your Skill Stack Evolution</h2>
-  <p style="text-align:center; font-size:14px; color:#a39e93; max-width:600px; margin: -10px auto 32px auto;">Every skill follows the same rigorous loop. Master the loop, master the skill.</p>
-  
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
-    <div class="pm-glass-card" style="padding:20px; text-align:center; background:rgba(0,0,0,0.2);">
-      <h4 style="color:#c9913a; margin:0 0 16px 0; font-family:'Outfit', sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:12px;">Time Management</h4>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Learn Systems</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Practice Blocking</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#f2ede4; background:rgba(13,94,58,0.4); border:1px solid #0d5e3a; padding:8px; border-radius:6px; font-weight:600;">Improve Focus</div>
-    </div>
-    <div class="pm-glass-card" style="padding:20px; text-align:center; background:rgba(0,0,0,0.2);">
-      <h4 style="color:#c9913a; margin:0 0 16px 0; font-family:'Outfit', sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:12px;">Public Speaking</h4>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Learn Structure</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Practice Delivery</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#f2ede4; background:rgba(13,94,58,0.4); border:1px solid #0d5e3a; padding:8px; border-radius:6px; font-weight:600;">Improve Presence</div>
-    </div>
-    <div class="pm-glass-card" style="padding:20px; text-align:center; background:rgba(0,0,0,0.2);">
-      <h4 style="color:#c9913a; margin:0 0 16px 0; font-family:'Outfit', sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:12px;">Critical Thinking</h4>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Learn Logic</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Practice Analysis</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#f2ede4; background:rgba(13,94,58,0.4); border:1px solid #0d5e3a; padding:8px; border-radius:6px; font-weight:600;">Improve Solutions</div>
-    </div>
-    <div class="pm-glass-card" style="padding:20px; text-align:center; background:rgba(0,0,0,0.2);">
-      <h4 style="color:#c9913a; margin:0 0 16px 0; font-family:'Outfit', sans-serif; text-transform:uppercase; letter-spacing:1px; font-size:12px;">Creative Writing</h4>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Learn Syntax</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#e0dcd3; background:rgba(255,255,255,0.05); padding:8px; border-radius:6px; margin-bottom:8px;">Practice Drafting</div>
-      <i class="fas fa-arrow-down" style="color:#0d5e3a; font-size:12px; margin-bottom:8px;"></i>
-      <div style="font-size:13px; color:#f2ede4; background:rgba(13,94,58,0.4); border:1px solid #0d5e3a; padding:8px; border-radius:6px; font-weight:600;">Improve Impact</div>
-    </div>
-  </div>
-
-  <div class="pm-grid-2" style="margin-top:40px;">
-    
-    <div style="display:flex; flex-direction:column; gap:24px;">
-      
-      <div class="pm-glass-card">
-        <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin-bottom:20px;"><i class="fas fa-clipboard-check" style="color:#0d5e3a; margin-right:8px;"></i> Your Task (Day 10)</h4>
-        
-        <label class="pm-task-label">
-          <input type="checkbox">
-          <span class="pm-task-text">Plan your entire day using a digital calendar or Notion.</span>
-        </label>
-        <label class="pm-task-label">
-          <input type="checkbox">
-          <span class="pm-task-text">Record a 1-minute speech on your phone explaining a complex topic simply.</span>
-        </label>
-        <label class="pm-task-label">
-          <input type="checkbox">
-          <span class="pm-task-text">Solve 1 workflow problem logically using the "5 Whys" method.</span>
-        </label>
-        <label class="pm-task-label">
-          <input type="checkbox">
-          <span class="pm-task-text">Write a 100-word creative summary of what you learned this week.</span>
-        </label>
-      </div>
-
-      <div class="pm-sim-card">
-        <h4><i class="fas fa-briefcase" style="margin-right:8px; color:#c9913a;"></i> Scenario: Interview Preparation</h4>
-        <p style="font-size:13px; color:#a39e93; margin-bottom:16px;">Combine your skills for the ultimate test: A simulated job interview. Open your AI Guide and complete these steps:</p>
-        <ul class="pm-sim-list">
-          <li>1. Write a clear, 3-sentence professional introduction (Writing).</li>
-          <li>2. Deliver it aloud confidently to the mirror (Speaking).</li>
-          <li>3. Prompt the AI for a difficult situational question and solve it logically (Thinking).</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div style="display:flex; flex-direction:column; gap:24px;">
-      
-      <div class="pm-glass-card" style="border-left:3px solid #c9913a;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-          <i class="fas fa-lightbulb" style="color:#c9913a; font-size:20px;"></i>
-          <h4 style="font-family:'Cormorant Garamond', serif; font-size:20px; color:#f2ede4; margin:0;">Coach's Advice</h4>
-        </div>
-        <ul style="margin:0 0 0 16px; padding:0; color:#e0dcd3; font-size:14px; font-weight:300; line-height:1.6;">
-          <li style="margin-bottom:8px;"><strong>Consistency beats intensity.</strong> 20 minutes of daily writing is better than 3 hours once a week.</li>
-          <li style="margin-bottom:8px;"><strong>Practice in public.</strong> Share your small wins or drafts. Feedback accelerates growth.</li>
-          <li style="margin-bottom:8px;"><strong>Reflect daily.</strong> Keep your logbook updated. You can't improve what you don't measure.</li>
-          <li><strong>Don’t fear mistakes.</strong> Mistakes are just data points telling you exactly what to fix next.</li>
-        </ul>
-      </div>
-
-      <div class="pm-glass-card" style="display:flex; flex-direction:column;">
-        <h4 style="font-family:'Cormorant Garamond', serif; font-size:22px; color:#f2ede4; margin-bottom:4px;"><i class="fas fa-toolbox" style="color:#0d5e3a; margin-right:8px;"></i> Your Skill Toolkit</h4>
-        <p style="font-size:12px; color:#a39e93; margin-bottom:12px;">Bookmark your core development apps.</p>
-        
-        <div class="pm-tk-cat">⏱ Productivity</div>
-        <div class="pm-tk-item">
-          <a href="https://calendar.google.com/" target="_blank" class="pm-tk-name">Google Calendar</a>
-          <i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i>
-        </div>
-        <div class="pm-tk-item">
-          <a href="https://www.notion.so/" target="_blank" class="pm-tk-name">Notion Workspaces</a>
-          <i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i>
-        </div>
-
-        <div class="pm-tk-cat">🎤 Presentation Design</div>
-        <div class="pm-tk-item">
-          <a href="https://www.canva.com/" target="_blank" class="pm-tk-name">Canva</a>
-          <i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i>
-        </div>
-        <div class="pm-tk-item">
-          <a href="https://slides.google.com/" target="_blank" class="pm-tk-name">Google Slides</a>
-          <i class="far fa-star pm-tk-save" onclick="togglePmBookmark(this)"></i>
-        </div>
-
-        <button class="pm-toolkit-btn" onclick="alert('Initiating Daily Skill Mode...');"><i class="fas fa-bolt" style="margin-right:6px;"></i> Start Daily Skill Mode</button>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-  /* ── MODULE 2 & 3: PEREGRINE DARK ECOSYSTEM CSS ── */
+  /* ── PEREGRINE DARK ECOSYSTEM CSS (MODULES 2 & 3) ── */
   .pm-wrapper { background: #0a0f0d; background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13,94,58,0.15) 0%, transparent 100%); color: #f2ede4; font-family: 'Outfit', sans-serif; border-radius: 16px; padding: 40px; margin: 32px 0 60px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); }
   .pm-header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,145,58,0.15); border: 1px solid rgba(201,145,58,0.3); color: #c9913a; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
   .pm-title { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 700; color: #f2ede4; margin-bottom: 8px; line-height: 1.2; }
@@ -655,6 +206,46 @@
   .pm-sim-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: #f2ede4; margin-bottom: 4px; }
   .pm-sim-desc { font-size: 12px; color: #a39e93; line-height: 1.4; padding: 0 10px; }
   @media(max-width: 768px) { .pm-sim-steps { flex-direction: column; gap: 32px; } .pm-sim-steps::before { display: none; } }
+
+  /* ── PEREGRINE CAMPUS HUB (PCX) CSS ── */
+  .pc-wrapper { background: #0a0f0d; background-image: radial-gradient(circle at 10% 90%, rgba(201,145,58,0.08) 0%, transparent 60%), radial-gradient(circle at 90% 10%, rgba(13,94,58,0.12) 0%, transparent 60%); color: #f2ede4; font-family: 'Outfit', sans-serif; border-radius: 16px; padding: 40px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+  .pc-header { text-align: center; margin-bottom: 40px; }
+  .pc-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(13,94,58,0.2); border: 1px solid rgba(13,94,58,0.5); color: #4ade80; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 16px; }
+  .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; color: #f2ede4; margin-bottom: 8px; }
+  .pc-subtitle { font-size: 16px; color: #a39e93; font-weight: 300; letter-spacing: 0.02em; }
+  .pc-glass-card { background: rgba(255,255,255,0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 24px; transition: all 0.3s ease; display: flex; flex-direction: column; }
+  .pc-glass-card:hover { border-color: rgba(201,145,58,0.3); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); background: rgba(255,255,255,0.04); }
+  .pc-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .pc-progress-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 40px; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
+  .pc-stat { padding: 12px; }
+  .pc-stat-title { font-size: 11px; text-transform: uppercase; color: #a39e93; letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .pc-stat-value { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: #c9913a; margin-bottom: 8px; font-weight: 700; line-height: 1; }
+  .pc-bar-bg { height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+  .pc-bar-fill { height: 100%; background: #0d5e3a; box-shadow: 0 0 8px rgba(13,94,58,0.8); }
+  .pc-bar-fill.gold { background: #c9913a; box-shadow: 0 0 8px rgba(201,145,58,0.8); }
+  .pc-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .pc-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(13,94,58,0.15); color: #4ade80; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(13,94,58,0.3); }
+  .pc-icon.gold { background: rgba(201,145,58,0.15); color: #e4c870; border-color: rgba(201,145,58,0.3); }
+  .pc-status { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); color: #a39e93; letter-spacing: 0.05em; }
+  .pc-status.live { background: rgba(201,145,58,0.15); color: #e4c870; border: 1px solid rgba(201,145,58,0.3); }
+  .pc-card-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #f2ede4; margin-bottom: 8px; font-weight: 600; }
+  .pc-card-desc { font-size: 13px; color: #a39e93; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+  .pc-actions { display: flex; gap: 8px; margin-top: auto; }
+  .pc-btn { flex: 1; text-align: center; padding: 10px; font-size: 12px; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: none; font-family: 'Outfit', sans-serif; }
+  .pc-btn-primary { background: #c9913a; color: #0a0f0d; }
+  .pc-btn-primary:hover { background: #e4c870; box-shadow: 0 4px 12px rgba(201,145,58,0.3); }
+  .pc-btn-secondary { background: rgba(255,255,255,0.05); color: #f2ede4; border: 1px solid rgba(255,255,255,0.1); }
+  .pc-btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  .pc-ai-card { grid-column: 1 / -1; background: linear-gradient(135deg, rgba(13,94,58,0.15) 0%, rgba(0,0,0,0.4) 100%); border: 1px solid #0d5e3a; display: flex; flex-direction: row; align-items: center; gap: 32px; padding: 32px; margin-top: 20px; }
+  @media(max-width: 768px) { .pc-ai-card { flex-direction: column; text-align: center; gap: 20px; } }
+  .pcw-banner { background: linear-gradient(90deg, rgba(10,15,13,0.9) 0%, rgba(13,94,58,0.2) 100%); border: 1px solid rgba(201,145,58,0.3); border-radius: 12px; padding: 24px; margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; }
+  .pcw-info { flex: 1; min-width: 250px; }
+  .pcw-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: #e4c870; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .pcw-desc { font-size: 13px; color: #e0dcd3; font-weight: 300; font-family: 'Outfit', sans-serif; line-height: 1.5; }
+  .pcw-activities { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pcw-badge { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; color: #f2ede4; display: flex; align-items: center; gap: 8px; cursor: default; transition: background 0.2s; }
+  .pcw-badge:hover { background: rgba(201,145,58,0.15); border-color: rgba(201,145,58,0.4); color: #e4c870; }
+  .pcw-badge i { color: #4ade80; }
 </style>
 </head>
 <body>
@@ -727,6 +318,172 @@
           <button class="header-cta" onclick="openLogModal()">
             <i class="fas fa-cloud-upload-alt" style="margin-right:4px;"></i> Daily Log
           </button>
+        </div>
+      </div>
+
+      <div class="pc-wrapper">
+        <div class="pc-header">
+          <div class="pc-badge"><i class="fas fa-university"></i> Peregrine Campus Experience</div>
+          <h2 class="pc-title">The Campus Ecosystem</h2>
+          <p class="pc-subtitle">Learn. Practice. Collaborate. Grow.</p>
+        </div>
+
+        <div class="pc-progress-dashboard">
+          <div class="pc-stat">
+            <div class="pc-stat-title"><i class="fas fa-chalkboard-teacher"></i> Mentorship</div>
+            <div class="pc-stat-value">3 / 4</div>
+            <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 75%;"></div></div>
+          </div>
+          <div class="pc-stat">
+            <div class="pc-stat-title"><i class="fas fa-users-cog"></i> Projects</div>
+            <div class="pc-stat-value">2 / 4</div>
+            <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 50%;"></div></div>
+          </div>
+          <div class="pc-stat">
+            <div class="pc-stat-title"><i class="fas fa-tasks"></i> Assignments</div>
+            <div class="pc-stat-value">8 / 12</div>
+            <div class="pc-bar-bg"><div class="pc-bar-fill gold" style="width: 66%;"></div></div>
+          </div>
+          <div class="pc-stat">
+            <div class="pc-stat-title"><i class="fas fa-fire"></i> Journal Streak</div>
+            <div class="pc-stat-value">14 Days</div>
+            <div class="pc-bar-bg"><div class="pc-bar-fill" style="width: 100%;"></div></div>
+          </div>
+        </div>
+
+        <div class="pc-grid-3">
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon gold"><i class="fas fa-user-tie"></i></div>
+              <div class="pc-status live"><i class="fas fa-circle fa-fade" style="font-size:8px; margin-right:4px;"></i> Upcoming Session</div>
+            </div>
+            <h3 class="pc-card-title">Mentorship Sessions</h3>
+            <p class="pc-card-desc">Weekly live sessions with experienced industry professionals to guide your learning and career trajectory.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-primary">Join Live Room</button>
+              <button class="pc-btn pc-btn-secondary"><i class="far fa-calendar-alt"></i> Schedule</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon"><i class="fas fa-project-diagram"></i></div>
+              <div style="display:flex; margin-left:auto;">
+                <div style="width:24px; height:24px; border-radius:50%; background:#c9913a; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:3;">S</div>
+                <div style="width:24px; height:24px; border-radius:50%; background:#4ade80; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:2;">A</div>
+                <div style="width:24px; height:24px; border-radius:50%; background:#e0dcd3; border:2px solid #0a0f0d; color:#0a0f0d; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:bold; margin-left:-8px; z-index:1;">+2</div>
+              </div>
+            </div>
+            <h3 class="pc-card-title">Collaborative Projects</h3>
+            <p class="pc-card-desc">Work in cross-functional teams to solve real-world problems and build your professional portfolio.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-primary">Project Workspace</button>
+              <button class="pc-btn pc-btn-secondary">Find a Team</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon gold"><i class="fas fa-building"></i></div>
+              <div class="pc-status">Archived</div>
+            </div>
+            <h3 class="pc-card-title">Industry Exposure</h3>
+            <p class="pc-card-desc">Virtual and physical visits to understand real-world corporate environments and workflows.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-secondary"><i class="fas fa-play"></i> Watch Past Visit</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon"><i class="fas fa-microphone-alt"></i></div>
+              <div class="pc-status live">Friday, 4 PM</div>
+            </div>
+            <h3 class="pc-card-title">Expert Talks</h3>
+            <p class="pc-card-desc">Learn directly from scholars, industry leaders, and tech pioneers in exclusive guest lectures.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-primary">Register</button>
+              <button class="pc-btn pc-btn-secondary">View Library</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon gold"><i class="fas fa-clipboard-check"></i></div>
+              <div class="pc-status" style="color:#e4c870;">1 Pending</div>
+            </div>
+            <h3 class="pc-card-title">Assessments</h3>
+            <p class="pc-card-desc">Track your learning retention with regular end-of-module quizzes and practical assignments.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-primary">Start Quiz</button>
+              <button class="pc-btn pc-btn-secondary">View Results</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card">
+            <div class="pc-card-header">
+              <div class="pc-icon"><i class="fas fa-sync-alt"></i></div>
+              <div class="pc-status">Awaiting Feedback</div>
+            </div>
+            <h3 class="pc-card-title">Peer Feedback</h3>
+            <p class="pc-card-desc">Improve your work and critical thinking through structured, double-blind peer review sessions.</p>
+            <div class="pc-actions">
+              <button class="pc-btn pc-btn-primary">Review Peers</button>
+              <button class="pc-btn pc-btn-secondary">My Submissions</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card" style="grid-column: 1 / -1;">
+            <div class="pc-card-header" style="margin-bottom:8px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div class="pc-icon gold"><i class="fas fa-book-open"></i></div>
+                <h3 class="pc-card-title" style="margin:0;">Daily Reflection Journal</h3>
+              </div>
+              <div class="pc-status live"><i class="fas fa-pen fa-fade"></i> Write Today's Entry</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:16px; margin: 12px 0;">
+              <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:15px; color:#a39e93; margin:0;">"Today I learned about data scraping, but I am struggling slightly with Python Pandas formatting..."</p>
+            </div>
+            <div class="pc-actions" style="justify-content: flex-end;">
+              <button class="pc-btn pc-btn-secondary" style="flex:initial; padding: 10px 24px;">View Past Entries</button>
+              <button class="pc-btn pc-btn-primary" style="flex:initial; padding: 10px 24px;" onclick="openLogModal()">Write Entry</button>
+            </div>
+          </div>
+
+          <div class="pc-glass-card pc-ai-card">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #0d5e3a, #c9913a); display: flex; align-items: center; justify-content: center; font-size: 36px; box-shadow: 0 0 30px rgba(13,94,58,0.5); flex-shrink:0; position:relative;">
+              🤖
+              <div style="position:absolute; bottom:0; right:0; width:16px; height:16px; background:#4ade80; border-radius:50%; border:3px solid #0a0f0d;"></div>
+            </div>
+            <div style="flex-grow: 1;">
+              <h3 class="pc-card-title" style="color:#4ade80; font-size: 26px;">Your AI Campus Mentor</h3>
+              <p style="font-size: 14px; color: #e0dcd3; font-weight: 300; max-width: 500px; margin-bottom: 16px;">I am your personal guide across the entire Peregrine Campus. I can help you plan your week or prepare you for peer feedback.</p>
+              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Help me plan my study and project schedule for this week.'; toggleAI();">Help me plan my week</button>
+                <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='Can you review my latest assignment draft for formatting?'; toggleAI();">Give feedback on my work</button>
+                <button class="pc-btn pc-btn-secondary" style="flex:initial; padding:8px 16px; border-color:#0d5e3a;" onclick="document.getElementById('ai-prompt').value='How can I improve my daily journal reflections?'; toggleAI();">Suggest improvements</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcw-banner">
+        <div class="pcw-info">
+          <h3 class="pcw-title"><i class="fas fa-university"></i> Campus Activities for This Week</h3>
+          <p class="pcw-desc">You are participating in the Peregrine Campus. Complete these required activities to finalize this module's requirements.</p>
+        </div>
+        
+        <div class="pcw-activities">
+          <div class="pcw-badge" title="Complete your introductory module quiz.">
+            <i class="fas fa-clipboard-check"></i> Module 1 Quiz
+          </div>
+          <div class="pcw-badge" title="Join the Friday welcome lecture.">
+            <i class="fas fa-user-tie" style="color:#c9913a;"></i> Live Guest Lecture
+          </div>
+          <div class="pcw-badge" onclick="openLogModal()" style="cursor: pointer; border-color: #0d5e3a; background: rgba(13,94,58,0.1);">
+            <i class="fas fa-pen"></i> Submit Daily Journal
+          </div>
         </div>
       </div>
 
@@ -941,7 +698,6 @@
               <span class="pm-task-text">Document 5 new vocabulary words in your Logbook.</span>
             </label>
           </div>
-
           <div class="pm-glass-card" style="display:flex; flex-direction:column;">
             <h4 style="font-family:'Cormorant Garamond', serif; font-size:22px; color:#f2ede4; margin-bottom:4px;"><i class="fas fa-bookmark" style="color:#0d5e3a; margin-right:8px;"></i> Your Language Toolkit</h4>
             <div class="pm-tk-cat">📱 Core Learning Apps</div>
@@ -983,7 +739,6 @@
               <li><i class="fas fa-check-circle"></i> Live Documentation</li>
             </ul>
           </div>
-
           <div class="pm-glass-card pm-ai-card">
             <div class="pm-ai-header">
               <div class="pm-ai-icon"><i class="fas fa-robot"></i></div>
@@ -1092,41 +847,29 @@
   </main>
 
   <aside class="ai-panel" id="ai-panel">
-    <div class="ai-toggle" onclick="toggleAI()">
-      <i class="fas fa-robot"></i>
-    </div>
+    <div class="ai-toggle" onclick="toggleAI()"><i class="fas fa-robot"></i></div>
     <div class="ai-head">
       <div class="ai-head-icon">🧠</div>
-      <div style="flex:1;min-width:0">
-        <div class="ai-title">Peregrine AI Tutor</div>
-        <div class="ai-sub"><span class="ai-live-tag">Live</span> Module Guide</div>
-      </div>
+      <div style="flex:1;min-width:0"><div class="ai-title">Peregrine AI Tutor</div><div class="ai-sub"><span class="ai-live-tag">Live</span> Module Guide</div></div>
       <i class="fas fa-times" style="cursor:pointer; color:rgba(255,255,255,0.5); padding:8px;" onclick="toggleAI()"></i>
     </div>
     <div class="ai-chat" id="chat-box">
       <div class="ai-msg-wrap">
         <div class="ai-av bot">🧠</div>
-        <div class="ai-bub bot">
-          <strong>السَّلَامُ عَلَيْكُمْ!</strong> I’m your Peregrine AI Mentor.<br><br>
-          I can help you navigate tools, check translations, or explain daily concepts. How can I assist you today?
-        </div>
+        <div class="ai-bub bot"><strong>السَّلَامُ عَلَيْكُمْ!</strong> I’m your Peregrine AI Mentor. I can help you navigate tools or explain daily concepts. How can I assist you today?</div>
       </div>
     </div>
     <div class="ai-input-area">
       <div class="ai-input-box">
         <input type="text" id="ai-prompt" placeholder="Ask your mentor..." onkeypress="if(event.key === 'Enter') sendPrompt()">
-        <button onclick="sendPrompt()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
+        <button onclick="sendPrompt()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
       </div>
     </div>
   </aside>
 </div>
 
 <script>
-// --- YOUR API URL ---
 const API_URL = "https://script.google.com/macros/s/AKfycbxMmiyjz5qlfu8iXkrHG_Zv0hFyazW39aNipNs_A2iMuiNLKQhkrxRyN7SzI5rFJiWyTA/exec";
-
 let currentUserEmail = "";
 
 function authenticate() {
@@ -1166,22 +909,12 @@ function sendPrompt() {
   if(!text) return;
   
   const chatBox = document.getElementById('chat-box');
-  chatBox.innerHTML += `
-    <div class="ai-msg-wrap" style="flex-direction:row-reverse;">
-      <div class="ai-av user">👤</div>
-      <div class="ai-bub user">${text}</div>
-    </div>
-  `;
+  chatBox.innerHTML += `<div class="ai-msg-wrap" style="flex-direction:row-reverse;"><div class="ai-av user">👤</div><div class="ai-bub user">${text}</div></div>`;
   input.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
   
   const loadId = 'load-' + Date.now();
-  chatBox.innerHTML += `
-    <div class="ai-msg-wrap" id="${loadId}">
-      <div class="ai-av bot">🧠</div>
-      <div class="ai-bub bot"><i class="fas fa-ellipsis-h fa-fade"></i></div>
-    </div>
-  `;
+  chatBox.innerHTML += `<div class="ai-msg-wrap" id="${loadId}"><div class="ai-av bot">🧠</div><div class="ai-bub bot"><i class="fas fa-ellipsis-h fa-fade"></i></div></div>`;
   chatBox.scrollTop = chatBox.scrollHeight;
   
   fetch(`${API_URL}?action=chat&email=${encodeURIComponent(currentUserEmail)}&q=${encodeURIComponent(text)}`)
@@ -1190,19 +923,9 @@ function sendPrompt() {
       document.getElementById(loadId).remove();
       if(data.ok) {
         const formattedReply = data.reply.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-        chatBox.innerHTML += `
-          <div class="ai-msg-wrap">
-            <div class="ai-av bot">🧠</div>
-            <div class="ai-bub bot">${formattedReply}</div>
-          </div>
-        `;
+        chatBox.innerHTML += `<div class="ai-msg-wrap"><div class="ai-av bot">🧠</div><div class="ai-bub bot">${formattedReply}</div></div>`;
       } else {
-        chatBox.innerHTML += `
-          <div class="ai-msg-wrap">
-            <div class="ai-av bot">🧠</div>
-            <div class="ai-bub bot" style="color:#ff6b6b">Connection error.</div>
-          </div>
-        `;
+        chatBox.innerHTML += `<div class="ai-msg-wrap"><div class="ai-av bot">🧠</div><div class="ai-bub bot" style="color:#ff6b6b">Connection error.</div></div>`;
       }
       chatBox.scrollTop = chatBox.scrollHeight;
     });
