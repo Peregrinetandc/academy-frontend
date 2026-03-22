@@ -612,11 +612,26 @@ function closeSidebar() {
 }
 
 // ═══════════════════════════════════════════════════════
-// EXISTING LMS LOGIC
+// UNIFIED LMS LOGIC (Aligned with Week 4)
 // ═══════════════════════════════════════════════════════
 const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 let currentUserEmail = "";
 
+// ── TOAST HELPER ─────────────────────────────────────
+function toast(msg, isError) {
+  const t = document.getElementById('toast') || document.createElement('div');
+  if (!document.getElementById('toast')) {
+    t.id = 'toast';
+    t.className = 'toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => { t.className = 'toast'; }, 3200);
+}
+
+// ── AUTHENTICATE ─────────────────────────────────────
 function authenticate() {
   const email = document.getElementById('login-email').value.trim();
   const btn = document.getElementById('login-btn');
@@ -627,24 +642,27 @@ function authenticate() {
   btn.disabled = true;
   err.style.display = 'none';
 
-  fetch(`${API_URL}?action=verify&email=${encodeURIComponent(email)}`)
+  // Aligned with Week 4's action=signin endpoint
+  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
     .then(res => res.json())
     .then(data => {
       if(data.ok) {
         currentUserEmail = email;
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('dashboard').style.display = 'flex';
-        document.getElementById('user-name').innerText = data.name;
+        document.getElementById('user-name').innerText = data.name || email.split('@')[0];
         document.getElementById('user-track').innerText = data.track || 'Internship Programme';
-        document.getElementById('user-initial').innerText = data.name.charAt(0).toUpperCase();
+        document.getElementById('user-initial').innerText = (data.name || email).charAt(0).toUpperCase();
       } else {
-        err.innerText = data.error;
+        // FIX: Prevents "undefined" by providing a fallback message
+        err.innerText = data.error || 'Access Denied. Check enrollment status.';
         err.style.display = 'block';
         btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
         btn.disabled = false;
       }
     })
     .catch(() => {
+      // Network fallback (Offline mode)
       currentUserEmail = email;
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'flex';
@@ -662,7 +680,7 @@ function sendPrompt() {
   if(!text) return;
   
   const chatBox = document.getElementById('chat-box');
-  chatBox.innerHTML += `<div class="ai-msg-wrap" style="flex-direction:row-reverse;"><div class="ai-av user">👤</div><div class="ai-bub user">${text}</div></div>`;
+  chatBox.innerHTML += `<div class="ai-msg-wrap" style="flex-direction:row-reverse;"><div class="ai-av user">👤</div><div class="ai-bub user">${escHtml(text)}</div></div>`;
   input.value = '';
   chatBox.scrollTop = chatBox.scrollHeight;
   
@@ -675,7 +693,7 @@ function sendPrompt() {
     .then(data => {
       const el = document.getElementById(loadId);
       if (el) el.remove();
-      if(data.ok) {
+      if(data.ok && data.reply) {
         const formattedReply = data.reply.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
         chatBox.innerHTML += `<div class="ai-msg-wrap"><div class="ai-av bot">🧠</div><div class="ai-bub bot">${formattedReply}</div></div>`;
       } else {
@@ -694,6 +712,7 @@ function sendPrompt() {
 function openLogModal() {
   const logContent = prompt(`Submit your reflection for Module 3:`);
   if (!logContent) return;
+  
   fetch(`${API_URL}?action=log_progress&uid=${encodeURIComponent(currentUserEmail)}&day=15&content=${encodeURIComponent(logContent)}`)
     .then(res => res.json())
     .then(data => {
@@ -705,6 +724,7 @@ function openLogModal() {
 function clockIn() {
   const btn = document.getElementById('btn-clockin');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging...';
+  
   fetch(`${API_URL}?action=clock_in&uid=${encodeURIComponent(currentUserEmail)}`)
     .then(res => res.json())
     .then(data => {
@@ -730,6 +750,7 @@ function uploadDocument(input) {
   reader.onload = function(e) {
     const base64Data = e.target.result.split(',')[1]; 
     const payload = { action: 'upload_doc', uid: currentUserEmail, email: currentUserEmail, docType: docType, fileName: file.name, mimeType: file.type, base64: base64Data };
+    
     fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
     .then(res => res.json())
     .then(data => {
@@ -749,6 +770,12 @@ function togglePmBookmark(element) {
   } else {
     element.classList.remove('fas', 'saved'); element.classList.add('far');
   }
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 </script>
 </body>
