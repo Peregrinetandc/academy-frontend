@@ -45,7 +45,7 @@
   .mobile-backdrop { display: none; position: fixed; inset: 0; background: rgba(13, 27, 42, 0.6); backdrop-filter: blur(4px); z-index: 1500; opacity: 0; transition: opacity 0.3s ease; }
   .mobile-backdrop.show { display: block; opacity: 1; }
 
-  .sidebar { background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); z-index: 2000; }
+  .sidebar { background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); border-top: none; z-index: 2000; }
   .brand-area { padding: 24px 20px; border-bottom: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 16px; height: 85px; }
   .sidebar-logo-img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
   .logo-text { display: flex; flex-direction: column; text-align: left; }
@@ -93,7 +93,7 @@
   .main-inner { max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
   
   @media(max-width: 1023px) {
-    .main-content { padding: 80px 20px 32px 20px; }
+    .main-content { padding: 80px 20px 32px 20px; } /* Room for hamburger */
   }
   
   .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
@@ -167,7 +167,7 @@
   .pm-progress-wrap { margin: 20px 0; }
   .pm-progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #a39e93; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
   .pm-progress-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
-  .pm-progress-fill { height: 100%; width: 50%; background: #c9913a; box-shadow: 0 0 10px rgba(201,145,58,0.5); }
+  .pm-progress-fill { height: 100%; width: 50%; background: #c9913a; box-shadow: 0 0 10px rgba(201,145,58,0.5); transition: width 1s ease; }
   .pm-checklist { list-style: none; padding: 0; margin: 0; }
   .pm-checklist li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #e0dcd3; margin-bottom: 8px; font-weight: 300; }
   .pm-checklist li i { color: #0d5e3a; font-size: 12px; }
@@ -244,7 +244,7 @@
 <div id="login-screen">
   <div class="login-card">
     <img src="https://raw.githubusercontent.com/Peregrinetandc/academy-frontend/main/logo-bg.png" alt="Peregrine T&C Logo" class="login-logo-img">
-    <h2>Peregrine T&C</h2>
+    <h2>Peregrine T&amp;C</h2>
     <p>Student Portal Login</p>
     <div class="input-group">
       <label>Registered Email</label>
@@ -266,7 +266,7 @@
     <div class="brand-area">
       <img src="https://raw.githubusercontent.com/Peregrinetandc/academy-frontend/main/logo-bg.png" alt="Peregrine" class="sidebar-logo-img">
       <div class="logo-text">
-        <span class="logo-primary">Peregrine T&C</span>
+        <span class="logo-primary">Peregrine T&amp;C</span>
         <span class="logo-secondary">Technologies &amp; Consulting</span>
       </div>
     </div>
@@ -599,7 +599,7 @@
 
 <script>
 // ═══════════════════════════════════════════════════════
-// RESPONSIVE SIDEBAR LOGIC
+// RESPONSIVE SIDEBAR LOGIC (NEW)
 // ═══════════════════════════════════════════════════════
 function toggleSidebar() {
   const sidebar = document.getElementById('main-sidebar');
@@ -616,12 +616,11 @@ function closeSidebar() {
 }
 
 // ═══════════════════════════════════════════════════════
-// UNIFIED LMS LOGIC (Aligned with Week 4)
+// EXISTING LMS LOGIC (Aligned with Week 4)
 // ═══════════════════════════════════════════════════════
 const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 let currentUserEmail = "";
 
-// ── TOAST HELPER ─────────────────────────────────────
 function toast(msg, isError) {
   const t = document.getElementById('toast') || document.createElement('div');
   if (!document.getElementById('toast')) {
@@ -633,7 +632,6 @@ function toast(msg, isError) {
   t._tid = setTimeout(() => { t.className = 'toast'; }, 3200);
 }
 
-// ── AUTHENTICATE ─────────────────────────────────────
 function authenticate() {
   const email = document.getElementById('login-email').value.trim();
   const btn = document.getElementById('login-btn');
@@ -644,7 +642,6 @@ function authenticate() {
   btn.disabled = true;
   err.style.display = 'none';
 
-  // Aligned with the working unified backend action=signin
   fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
     .then(res => res.json())
     .then(data => {
@@ -663,7 +660,6 @@ function authenticate() {
       }
     })
     .catch(() => {
-      // Offline/Network fallback so students are never fully blocked
       currentUserEmail = email;
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'flex';
@@ -713,7 +709,6 @@ function sendPrompt() {
 function openLogModal() {
   const logContent = prompt(`Submit your reflection for Module 3:`);
   if (!logContent) return;
-  
   fetch(`${API_URL}?action=log_progress&uid=${encodeURIComponent(currentUserEmail)}&day=15&content=${encodeURIComponent(logContent)}`)
     .then(res => res.json())
     .then(data => {
@@ -725,7 +720,6 @@ function openLogModal() {
 function clockIn() {
   const btn = document.getElementById('btn-clockin');
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging...';
-  
   fetch(`${API_URL}?action=clock_in&uid=${encodeURIComponent(currentUserEmail)}`)
     .then(res => res.json())
     .then(data => {
@@ -749,12 +743,10 @@ function uploadDocument(input) {
   if (!docType) { input.value = ''; return; }
 
   toast("Uploading " + file.name + "…");
-  
   const reader = new FileReader();
   reader.onload = function(e) {
     const base64Data = e.target.result.split(',')[1]; 
     const payload = { action: 'upload_doc', uid: currentUserEmail, email: currentUserEmail, docType: docType, fileName: file.name, mimeType: file.type, base64: base64Data };
-    
     fetch(API_URL, { method: "POST", body: JSON.stringify(payload) })
     .then(res => res.json())
     .then(data => {
