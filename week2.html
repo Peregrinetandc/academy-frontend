@@ -19,37 +19,30 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
   .top-rule { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%); z-index: 9999; }
 
-  /* ── LOGIN SCREEN ── */
-  #login-screen { position: fixed; inset: 0; background: var(--cream); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-  .login-card { background: var(--white); border-radius: 8px; box-shadow: 0 2px 16px rgba(13,27,42,0.06); width: 100%; max-width: 400px; padding: 32px; border: 1.5px solid var(--border); text-align: center; }
+  /* ── PREMIUM DARK LOGIN SCREEN ── */
+  #login-screen { position: fixed; inset: 0; background: #0a0f0d; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+  #login-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 10%, rgba(13,94,58,0.3) 0%, transparent 60%); pointer-events: none; }
+  .login-card { background: rgba(255,255,255,0.01); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; width: 100%; max-width: 380px; padding: 32px; text-align: center; position: relative; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
   .login-logo-img { width: 100px; height: auto; margin: 0 auto 16px auto; display: block; filter: drop-shadow(0px 4px 15px rgba(201,145,58,0.2)); }
-  .login-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-  .login-card p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .login-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold-2); margin-bottom: 4px; }
+  .login-card p { font-size: 13px; color: #a39e93; margin-bottom: 32px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
   .input-group { text-align: left; margin-bottom: 20px; }
-  .input-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-  .input-group input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s; font-family: 'DM Sans', sans-serif; }
-  .input-group input:focus { border-color: var(--gold); }
-  .btn-enroll { background: var(--red); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; padding: 14px 24px; border-radius: 6px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; text-transform: uppercase; width: 100%; }
-  .btn-enroll:hover { background: var(--red2); }
-  #login-error { color: var(--red); font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
+  .input-group label { display: block; font-size: 11px; font-weight: 700; color: #a39e93; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .input-group input { width: 100%; padding: 14px 16px; background: rgba(0,0,0,0.3); border: 1.5px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; font-size: 14px; outline: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .input-group input:focus { border-color: #C9A84C; background: rgba(0,0,0,0.5); }
+  .btn-enroll { background: linear-gradient(135deg, #0d5e3a, #0f7045); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 16px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; text-transform: uppercase; width: 100%; box-shadow: 0 8px 15px rgba(13,94,58,0.3); }
+  .btn-enroll:hover { transform: translateY(-2px); box-shadow: 0 12px 20px rgba(13,94,58,0.5); }
+  #login-error { color: #ff6b6b; font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
 
   /* ── DASHBOARD & RESPONSIVE SIDEBAR ── */
   #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; position: relative; }
 
   /* Mobile Hamburger Button */
-  .mobile-menu-btn {
-    display: none; position: fixed; top: 16px; left: 16px; z-index: 1999;
-    width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold2));
-    color: var(--navy); border: none; font-size: 18px; cursor: pointer;
-    box-shadow: 0 4px 12px rgba(201, 168, 76, 0.4); transition: transform 0.2s;
-  }
+  .mobile-menu-btn { display: none; position: fixed; top: 16px; left: 16px; z-index: 1999; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); border: none; font-size: 18px; cursor: pointer; box-shadow: 0 4px 12px rgba(201, 168, 76, 0.4); transition: transform 0.2s; }
   .mobile-menu-btn:hover { transform: scale(1.05); }
 
   /* Mobile Backdrop */
-  .mobile-backdrop {
-    display: none; position: fixed; inset: 0; background: rgba(13, 27, 42, 0.6);
-    backdrop-filter: blur(4px); z-index: 1500; opacity: 0; transition: opacity 0.3s ease;
-  }
+  .mobile-backdrop { display: none; position: fixed; inset: 0; background: rgba(13, 27, 42, 0.6); backdrop-filter: blur(4px); z-index: 1500; opacity: 0; transition: opacity 0.3s ease; }
   .mobile-backdrop.show { display: block; opacity: 1; }
 
   .sidebar { background: var(--navy); display: flex; flex-direction: column; border-right: 3px solid var(--gold); z-index: 2000; }
@@ -68,7 +61,7 @@
   .nav-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
   
   .week-group { margin-bottom: 16px; }
-  .week-title { padding: 0 20px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .week-title { padding: 0 20px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; white-space: nowrap; }
   .nav-item { padding: 12px 20px; display: flex; align-items: center; gap: 16px; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; cursor: pointer; border-left: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
   .nav-item:hover { background: rgba(255,255,255,0.05); color: var(--white); }
   .nav-item.active { background: rgba(201,168,76,0.1); border-left-color: var(--gold); color: var(--gold); font-weight: 600; }
@@ -141,7 +134,18 @@
   .ai-input-box button:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(13,94,58,0.5); }
   @keyframes msgIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* ── FLUID TYPOGRAPHY & CARDS ── */
+  /* ── FLUID TYPOGRAPHY & CARDS (WEEK 2 CONTENT) ── */
+  .pcw-banner { background: linear-gradient(90deg, rgba(10,15,13,0.9) 0%, rgba(13,94,58,0.2) 100%); border: 1px solid rgba(201,145,58,0.3); border-radius: 12px; padding: clamp(20px, 4vw, 24px); margin-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; }
+  .pcw-info { flex: 1; min-width: 250px; }
+  .pcw-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3vw, 22px); font-weight: 700; color: #e4c870; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .pcw-desc { font-size: 13px; color: #e0dcd3; font-weight: 300; font-family: 'Outfit', sans-serif; line-height: 1.5; }
+  .pcw-activities { display: flex; gap: 12px; flex-wrap: wrap; width: 100%; }
+  @media(min-width: 768px){ .pcw-activities{width:auto;} }
+  .pcw-badge { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; color: #f2ede4; display: flex; align-items: center; gap: 8px; cursor: default; transition: background 0.2s; flex: 1; justify-content: center; white-space: nowrap; }
+  @media(max-width: 576px){ .pcw-badge{width:100%;flex:none;} }
+  .pcw-badge:hover { background: rgba(201,145,58,0.15); border-color: rgba(201,145,58,0.4); color: #e4c870; }
+  .pcw-badge i { color: #4ade80; }
+
   .pm-wrapper { background: #0a0f0d; background-image: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13,94,58,0.15) 0%, transparent 100%); color: #f2ede4; font-family: 'Outfit', sans-serif; border-radius: 16px; padding: clamp(24px, 5vw, 40px); margin: 32px 0 60px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.05); }
   .pm-header-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,145,58,0.15); border: 1px solid rgba(201,145,58,0.3); color: #c9913a; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
   .pm-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 36px); font-weight: 700; color: #f2ede4; margin-bottom: 8px; line-height: 1.2; }
@@ -219,18 +223,6 @@
   .pm-sim-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #4ade80; margin-bottom: 12px; }
   .pm-sim-list { list-style: none; padding: 0; margin: 0; }
   .pm-sim-list li { padding: 12px 16px; background: rgba(0,0,0,0.3); border-left: 3px solid #4ade80; border-radius: 4px; margin-bottom: 8px; font-size: 14px; color: #f2ede4; font-weight: 300; }
-
-  /* ── CAMPUS WIDGET ── */
-  .pcw-banner { background: linear-gradient(90deg, rgba(10,15,13,0.9) 0%, rgba(13,94,58,0.2) 100%); border: 1px solid rgba(201,145,58,0.3); border-radius: 12px; padding: clamp(20px, 4vw, 24px); margin-top: 48px; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); flex-wrap: wrap; }
-  .pcw-info { flex: 1; min-width: 250px; }
-  .pcw-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3vw, 22px); font-weight: 700; color: #e4c870; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .pcw-desc { font-size: 13px; color: #e0dcd3; font-weight: 300; font-family: 'Outfit', sans-serif; line-height: 1.5; }
-  .pcw-activities { display: flex; gap: 12px; flex-wrap: wrap; width: 100%; }
-  @media(min-width: 768px){ .pcw-activities{width:auto;} }
-  .pcw-badge { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; color: #f2ede4; display: flex; align-items: center; gap: 8px; cursor: default; transition: background 0.2s; flex: 1; justify-content: center; white-space: nowrap; }
-  @media(max-width: 576px){ .pcw-badge{width:100%;flex:none;} }
-  .pcw-badge:hover { background: rgba(201,145,58,0.15); border-color: rgba(201,145,58,0.4); color: #e4c870; }
-  .pcw-badge i { color: #4ade80; }
 
   /* ── TOAST ── */
   .toast {
@@ -359,7 +351,7 @@
             <p style="font-size:14px; color:#a39e93; font-weight:300; line-height:1.5;">In Week 1, you explored tools and built a foundation. In Week 2, you step out of the textbook and start using language in the real world.</p>
             <div class="pm-progress-wrap">
               <div class="pm-progress-label"><span>Phase 2 Immersion</span> <span>Day 8 of 30</span></div>
-              <div class="pm-progress-bar"><div class="pm-progress-fill"></div></div>
+              <div class="pm-progress-bar"><div class="pm-progress-fill" style="width: 33%;"></div></div>
             </div>
             <ul class="pm-checklist">
               <li><i class="fas fa-check-circle"></i> Speaking & Pronunciation</li>
@@ -465,7 +457,7 @@
               <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Write 5 sentences and ask AI for corrections.</span></label>
               <label class="pm-task-label"><input type="checkbox"><span class="pm-task-text">Join 1 online language community.</span></label>
             </div>
-            <div class="pm-sim-card">
+            <div class="pm-sim-card" style="border-color:#c9913a;">
               <h4 style="color:#c9913a;"><i class="fas fa-plane-arrival" style="margin-right:8px;"></i> Scenario: Airport Conversation</h4>
               <ul class="pm-sim-list">
                 <li>1. Ask the AI for directions to the taxi stand.</li>
@@ -647,7 +639,7 @@ function closeSidebar() {
 }
 
 // ═══════════════════════════════════════════════════════
-// UNIFIED LMS LOGIC (Aligned with Week 3 & 4)
+// UNIFIED LMS LOGIC
 // ═══════════════════════════════════════════════════════
 const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 let currentUserEmail = "";
@@ -675,7 +667,6 @@ function authenticate() {
   btn.disabled = true;
   err.style.display = 'none';
 
-  // Aligned with the working unified backend action=signin
   fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
     .then(res => res.json())
     .then(data => {
