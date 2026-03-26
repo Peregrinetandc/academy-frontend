@@ -332,10 +332,13 @@
     <p>Student Portal Login</p>
     
     <div class="input-group">
-      <label>Registered Email</label>
-      <input type="email" id="login-email" placeholder="student@university.edu" required onkeydown="if(event.key==='Enter')authenticate()">
+      <label>Username</label>
+      <input type="text" id="login-username" placeholder="Enter your username" required onkeydown="if(event.key==='Enter')authenticate()">
     </div>
-    
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="Enter your password" required onkeydown="if(event.key==='Enter')authenticate()">
+    </div>
     <button class="btn-enroll" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
     <div id="login-error"></div>
   </div>
@@ -381,7 +384,7 @@
         <h4 id="user-name">Student Name</h4>
         <p id="user-track">Enrolled Track</p>
       </div>
-      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Log out"></i>
+      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Logout"></i>
     </div>
   </aside>
 
@@ -952,7 +955,7 @@ function closeSidebar() {
 // ═══════════════════════════════════════════════════════
 // EXISTING LMS LOGIC
 // ═══════════════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyMWtGY9UyN5-Rxftmh7xSJSG0lL4JDfSJm0ykXL0pArnkTDXpvDqSWkjogPq98SjQI/exec";
 let currentUserEmail = "";
 let currentWeek = 1;
 
@@ -1004,27 +1007,37 @@ function checkUnlock(progressData) {
   }
 }
 
-// --- MODIFIED AUTHENTICATE FUNCTION ---
+// ═══════════════════════════════════════════════════════
+// MODIFIED AUTHENTICATE FUNCTION WITH LOCALSTORAGE
+// ═══════════════════════════════════════════════════════
 function authenticate() {
-  const email = document.getElementById('login-email').value.trim();
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
-  if(!email) return;
+  
+  // Basic validation to ensure both fields are filled
+  if(!username || !password) {
+    err.innerText = 'Please enter both username and password.';
+    err.style.display = 'block';
+    return;
+  }
   
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
   btn.disabled = true;
   err.style.display = 'none';
 
-  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
+  // Fetch API call to Google Apps Script
+  fetch(`${API_URL}?action=signin&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
     .then(res => res.json())
     .then(data => {
       if(data.ok) {
-        currentUserEmail = email;
+        currentUserEmail = username; // Keeping variable name same so the rest of your app still works
         
         // --- NEW: Save to LocalStorage ---
         const savedData = {
-          email: email,
-          name: data.name || email.split('@')[0],
+          username: username,
+          name: data.name || username,
           track: data.track || 'Internship Programme',
           week: data.week || 1,
           tasks: data.tasks || null
@@ -1039,17 +1052,26 @@ function authenticate() {
         document.getElementById('user-initial').innerText = savedData.name.charAt(0).toUpperCase();
         if (data.week) applyProgress(data.week, data.tasks);
       } else {
-        err.innerText = data.error || 'Access Denied. Check enrollment status.';
+        err.innerText = data.error || 'Access Denied. Invalid username or password.';
         err.style.display = 'block';
         btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
         btn.disabled = false;
       }
     })
     .catch(() => {
-      // Offline mode fallback saving
-      currentUserEmail = email;
-      const savedData = { email: email, name: email.split('@')[0], track: 'Internship Programme', week: 1, tasks: null };
+      // Offline fallback logic
+      currentUserEmail = username; 
+      
+      // --- NEW: Save to LocalStorage (Offline) ---
+      const savedData = {
+        username: username,
+        name: username,
+        track: 'Internship Programme',
+        week: 1,
+        tasks: null
+      };
       localStorage.setItem('peregrine_session', JSON.stringify(savedData));
+      // -------------------------------------------
 
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'flex';
@@ -1064,7 +1086,7 @@ function checkLoginState() {
   const sessionString = localStorage.getItem('peregrine_session');
   if (sessionString) {
     const savedData = JSON.parse(sessionString);
-    currentUserEmail = savedData.email;
+    currentUserEmail = savedData.username;
     
     // Skip login and show dashboard
     document.getElementById('login-screen').style.display = 'none';
