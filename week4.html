@@ -14,28 +14,13 @@
     --green:#1a5c35; --green-bg:#f0faf4; --green-bd:#a8d5b8;
     --ink:#0a0f0d; --forest:#0d5e3a; --forest-2:#0f7045;
   }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);height:100vh;overflow:hidden;display:flex}
-  .top-rule{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy) 0%,var(--gold) 50%,var(--red) 100%);z-index:9999}
-
-  /* ── PREMIUM DARK LOGIN SCREEN ── */
-  #login-screen { position: fixed; inset: 0; background: #0a0f0d; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-  #login-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 10%, rgba(13,94,58,0.3) 0%, transparent 60%); pointer-events: none; }
-  .login-card { background: rgba(255,255,255,0.01); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; width: 100%; max-width: 380px; padding: 32px; text-align: center; position: relative; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-  .login-logo-img { width: 120px; height: auto; margin: 0 auto 16px auto; display: block; filter: drop-shadow(0px 4px 15px rgba(201,145,58,0.2)); }
-  .login-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold-2); margin-bottom: 4px; }
-  .login-card p { font-size: 13px; color: #a39e93; margin-bottom: 32px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
-  .input-group { text-align: left; margin-bottom: 20px; }
-  .input-group label { display: block; font-size: 11px; font-weight: 700; color: #a39e93; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
-  .input-group input { width: 100%; padding: 14px 16px; background: rgba(0,0,0,0.3); border: 1.5px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; font-size: 14px; outline: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-  .input-group input:focus { border-color: #C9A84C; background: rgba(0,0,0,0.5); }
-  .btn-enroll { background: linear-gradient(135deg, #0d5e3a, #0f7045); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 16px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; text-transform: uppercase; width: 100%; box-shadow: 0 8px 15px rgba(13,94,58,0.3); }
-  .btn-enroll:hover { transform: translateY(-2px); box-shadow: 0 12px 20px rgba(13,94,58,0.5); }
-  #login-error { color: #ff6b6b; font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
+  * {box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body {font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);height:100vh;overflow:hidden;display:flex}
+  .top-rule {position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--navy) 0%,var(--gold) 50%,var(--red) 100%);z-index:9999}
 
   /* ── DASHBOARD & RESPONSIVE SIDEBAR ── */
   .sidebar-logo-img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
-  #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; position: relative; }
+  #dashboard { display: flex; width: 100%; height: 100%; padding-top: 4px; position: relative; }
 
   /* Mobile Hamburger Button */
   .mobile-menu-btn {
@@ -100,7 +85,7 @@
   .main-inner { max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
 
   @media(max-width: 1023px) {
-    .main-content { padding: 80px 20px 32px 20px; } /* Room for hamburger */
+    .main-content { padding: 80px 20px 32px 20px; }
   }
 
   .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
@@ -245,20 +230,6 @@
 <div class="top-rule"></div>
 <div class="toast" id="toast"></div>
 
-<div id="login-screen">
-  <div class="login-card">
-    <img src="https://raw.githubusercontent.com/Peregrinetandc/academy-frontend/main/logo-bg.png" alt="Peregrine T&C Logo" class="login-logo-img">
-    <h2>Peregrine T&amp;C</h2>
-    <p>Student Portal Login</p>
-    <div class="input-group">
-      <label>Registered Email</label>
-      <input type="email" id="login-email" placeholder="student@university.edu" required onkeydown="if(event.key==='Enter')authenticate()">
-    </div>
-    <button class="btn-enroll" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
-    <div id="login-error"></div>
-  </div>
-</div>
-
 <div id="dashboard">
   
   <button id="mobile-menu-btn" class="mobile-menu-btn" onclick="toggleSidebar()">
@@ -299,6 +270,7 @@
         <h4 id="user-name">Student Name</h4>
         <p id="user-track">Enrolled Track</p>
       </div>
+      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Log out"></i>
     </div>
   </aside>
 
@@ -536,7 +508,7 @@
               </h4>
               <p style="color:#4a4640;font-size:12px;margin-bottom:24px">This certifies that</p>
               <h3 id="cert-name" style="font-family:'Playfair Display',serif;color:#0d5e3a;font-size:clamp(22px, 5vw, 28px); margin-bottom:16px;border-bottom:1px solid #c9913a; padding-bottom:8px;display:inline-block">
-                Peregrine Student
+                Student Name
               </h3>
               <p style="color:#4a4640;font-size:12px;margin-bottom:24px;line-height:1.5;">
                 has successfully completed the 30-Day Internship Program covering Digital Literacy,
@@ -563,7 +535,9 @@
             </button>
           </div>
         </div>
-      </div></div></main>
+      </div>
+    </div>
+  </main>
 
   <aside class="ai-panel" id="ai-panel">
     <div class="ai-toggle" onclick="toggleAI()"><i class="fas fa-robot"></i></div>
@@ -596,7 +570,9 @@
       </div>
     </div>
   </aside>
-</div><script>
+</div>
+
+<script>
 // ═══════════════════════════════════════════════════════
 // RESPONSIVE SIDEBAR LOGIC (NEW)
 // ═══════════════════════════════════════════════════════
@@ -633,47 +609,36 @@ function toast(msg, isError) {
   t._tid = setTimeout(() => { t.className = 'toast'; }, 3200);
 }
 
+// Ensure the certificate date is always current
 document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
 
-function authenticate() {
-  const email = document.getElementById('login-email').value.trim();
-  const btn   = document.getElementById('login-btn');
-  const err   = document.getElementById('login-error');
-  if (!email) { err.innerText = 'Please enter your registered email.'; err.style.display = 'block'; return; }
-
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-  btn.disabled  = true;
-  err.style.display = 'none';
-
-  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.ok) {
-        currentUserEmail = email;
-        currentUserName  = data.name || email.split('@')[0];
-        showDashboard(currentUserName, data.track || 'Internship Programme');
-      } else {
-        err.innerText = data.error || 'Access denied. Please check your email.';
-        err.style.display = 'block';
-        btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
-        btn.disabled  = false;
-      }
-    })
-    .catch(() => {
-      // Offline fallback
-      currentUserEmail = email;
-      currentUserName  = email.split('@')[0];
-      showDashboard(currentUserName, 'Internship Programme');
-    });
+// --- CHECK LOGIN STATE ---
+// Ensure the user is actually logged in, otherwise kick them back to index.html
+function checkLoginState() {
+  const sessionString = localStorage.getItem('peregrine_session');
+  if (sessionString) {
+    const savedData = JSON.parse(sessionString);
+    currentUserEmail = savedData.username || savedData.email;
+    currentUserName  = savedData.name || currentUserEmail;
+    
+    // Fill in the dashboard data from their saved session
+    document.getElementById('user-name').innerText = currentUserName;
+    document.getElementById('user-track').innerText = savedData.track || 'Internship Programme';
+    document.getElementById('user-initial').innerText = currentUserName.charAt(0).toUpperCase();
+    
+    // Fill in the name on the actual Certificate
+    document.getElementById('cert-name').innerText = currentUserName;
+  } else {
+    // If there is no saved memory, they are not logged in! Send them back to the login page.
+    window.location.href = 'index.html';
+  }
 }
+window.onload = checkLoginState;
 
-function showDashboard(name, track) {
-  document.getElementById('login-screen').style.display  = 'none';
-  document.getElementById('dashboard').style.display     = 'flex';
-  document.getElementById('user-name').innerText         = name;
-  document.getElementById('user-track').innerText        = track;
-  document.getElementById('user-initial').innerText      = name.charAt(0).toUpperCase();
-  document.getElementById('cert-name').innerText         = name;
+// --- LOGOUT FUNCTION ---
+function logout() {
+  localStorage.removeItem('peregrine_session'); // Clear the browser memory
+  window.location.href = 'index.html'; // Send them back to the main login page
 }
 
 function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
@@ -685,8 +650,8 @@ function aiAsk(prefix) {
 }
 
 function sendPrompt() {
-  const input   = document.getElementById('ai-prompt');
-  const text    = input.value.trim();
+  const input  = document.getElementById('ai-prompt');
+  const text   = input.value.trim();
   if (!text) return;
 
   const chatBox = document.getElementById('chat-box');
@@ -791,10 +756,6 @@ function uploadDocument(input) {
 }
 
 function printCertificate() {
-  if (document.getElementById('cert-name').innerText === 'Peregrine Student') {
-    toast('Please sign in first to personalise your certificate.', true);
-    return;
-  }
   window.print();
 }
 
