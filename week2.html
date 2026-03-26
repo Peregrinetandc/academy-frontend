@@ -266,6 +266,7 @@
         <h4 id="user-name">Student Name</h4>
         <p id="user-track">Enrolled Track</p>
       </div>
+      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Log out"></i>
     </div>
   </aside>
 
@@ -614,8 +615,7 @@ function closeSidebar() {
 // ═══════════════════════════════════════════════════════
 const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 
-// Default email to prevent backend errors since login is removed
-let currentUserEmail = "student@peregrine.edu";
+let currentUserEmail = "";
 
 // ── TOAST HELPER ─────────────────────────────────────
 function toast(msg, isError) {
@@ -627,6 +627,31 @@ function toast(msg, isError) {
   t.className = 'toast show' + (isError ? ' error' : '');
   clearTimeout(t._tid);
   t._tid = setTimeout(() => { t.className = 'toast'; }, 3200);
+}
+
+// --- CHECK LOGIN STATE ---
+// Ensure the user is actually logged in, otherwise kick them back to index.html
+function checkLoginState() {
+  const sessionString = localStorage.getItem('peregrine_session');
+  if (sessionString) {
+    const savedData = JSON.parse(sessionString);
+    currentUserEmail = savedData.username || savedData.email;
+    
+    // Fill in the dashboard data from their saved session
+    document.getElementById('user-name').innerText = savedData.name || currentUserEmail;
+    document.getElementById('user-track').innerText = savedData.track || 'Enrolled Track';
+    document.getElementById('user-initial').innerText = (savedData.name || currentUserEmail).charAt(0).toUpperCase();
+  } else {
+    // If there is no saved memory, they are not logged in! Send them back to the login page.
+    window.location.href = 'index.html';
+  }
+}
+window.onload = checkLoginState;
+
+// --- LOGOUT FUNCTION ---
+function logout() {
+  localStorage.removeItem('peregrine_session'); // Clear the browser memory
+  window.location.href = 'index.html'; // Send them back to the main login page
 }
 
 function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
