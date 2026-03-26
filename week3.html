@@ -19,23 +19,8 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
   .top-rule { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%); z-index: 9999; }
 
-  /* ── PREMIUM DARK LOGIN SCREEN ── */
-  #login-screen { position: fixed; inset: 0; background: #0a0f0d; display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-  #login-screen::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 10%, rgba(13,94,58,0.3) 0%, transparent 60%); pointer-events: none; }
-  .login-card { background: rgba(255,255,255,0.01); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; width: 100%; max-width: 380px; padding: 32px; text-align: center; position: relative; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
-  .login-logo-img { width: 100px; height: auto; margin: 0 auto 16px auto; display: block; filter: drop-shadow(0px 4px 15px rgba(201,145,58,0.2)); }
-  .login-card h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold-2); margin-bottom: 4px; }
-  .login-card p { font-size: 13px; color: #a39e93; margin-bottom: 32px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
-  .input-group { text-align: left; margin-bottom: 20px; }
-  .input-group label { display: block; font-size: 11px; font-weight: 700; color: #a39e93; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
-  .input-group input { width: 100%; padding: 14px 16px; background: rgba(0,0,0,0.3); border: 1.5px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; font-size: 14px; outline: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
-  .input-group input:focus { border-color: #C9A84C; background: rgba(0,0,0,0.5); }
-  .btn-enroll { background: linear-gradient(135deg, #0d5e3a, #0f7045); color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; padding: 16px 24px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; text-transform: uppercase; width: 100%; box-shadow: 0 8px 15px rgba(13,94,58,0.3); }
-  .btn-enroll:hover { transform: translateY(-2px); box-shadow: 0 12px 20px rgba(13,94,58,0.5); }
-  #login-error { color: #ff6b6b; font-size: 12px; margin-top: 12px; display: none; font-weight: 500; }
-
   /* ── DASHBOARD & RESPONSIVE SIDEBAR ── */
-  #dashboard { display: none; width: 100%; height: 100%; padding-top: 4px; position: relative; }
+  #dashboard { display: flex; width: 100%; height: 100%; padding-top: 4px; position: relative; }
 
   /* Mobile Hamburger Button */
   .mobile-menu-btn { display: none; position: fixed; top: 16px; left: 16px; z-index: 1999; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); border: none; font-size: 18px; cursor: pointer; box-shadow: 0 4px 12px rgba(201, 168, 76, 0.4); transition: transform 0.2s; }
@@ -93,7 +78,7 @@
   .main-inner { max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
   
   @media(max-width: 1023px) {
-    .main-content { padding: 80px 20px 32px 20px; } /* Room for hamburger */
+    .main-content { padding: 80px 20px 32px 20px; }
   }
   
   .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
@@ -241,20 +226,6 @@
 <div class="top-rule"></div>
 <div class="toast" id="toast"></div>
 
-<div id="login-screen">
-  <div class="login-card">
-    <img src="https://raw.githubusercontent.com/Peregrinetandc/academy-frontend/main/logo-bg.png" alt="Peregrine T&C Logo" class="login-logo-img">
-    <h2>Peregrine T&amp;C</h2>
-    <p>Student Portal Login</p>
-    <div class="input-group">
-      <label>Registered Email</label>
-      <input type="email" id="login-email" placeholder="student@university.edu" required onkeydown="if(event.key==='Enter')authenticate()">
-    </div>
-    <button class="btn-enroll" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
-    <div id="login-error"></div>
-  </div>
-</div>
-
 <div id="dashboard">
   
   <button id="mobile-menu-btn" class="mobile-menu-btn" onclick="toggleSidebar()">
@@ -295,6 +266,7 @@
         <h4 id="user-name">Student Name</h4>
         <p id="user-track">Enrolled Track</p>
       </div>
+      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Log out"></i>
     </div>
   </aside>
 
@@ -616,7 +588,7 @@ function closeSidebar() {
 }
 
 // ═══════════════════════════════════════════════════════
-// EXISTING LMS LOGIC (Aligned with Week 4)
+// EXISTING LMS LOGIC 
 // ═══════════════════════════════════════════════════════
 const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 let currentUserEmail = "";
@@ -632,41 +604,29 @@ function toast(msg, isError) {
   t._tid = setTimeout(() => { t.className = 'toast'; }, 3200);
 }
 
-function authenticate() {
-  const email = document.getElementById('login-email').value.trim();
-  const btn = document.getElementById('login-btn');
-  const err = document.getElementById('login-error');
-  if(!email) return;
-  
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-  btn.disabled = true;
-  err.style.display = 'none';
+// --- CHECK LOGIN STATE ---
+// Ensure the user is actually logged in, otherwise kick them back to index.html
+function checkLoginState() {
+  const sessionString = localStorage.getItem('peregrine_session');
+  if (sessionString) {
+    const savedData = JSON.parse(sessionString);
+    currentUserEmail = savedData.username || savedData.email;
+    
+    // Fill in the dashboard data from their saved session
+    document.getElementById('user-name').innerText = savedData.name || currentUserEmail;
+    document.getElementById('user-track').innerText = savedData.track || 'Enrolled Track';
+    document.getElementById('user-initial').innerText = (savedData.name || currentUserEmail).charAt(0).toUpperCase();
+  } else {
+    // If there is no saved memory, they are not logged in! Send them back to the login page.
+    window.location.href = 'index.html';
+  }
+}
+window.onload = checkLoginState;
 
-  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
-    .then(res => res.json())
-    .then(data => {
-      if(data.ok) {
-        currentUserEmail = email;
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'flex';
-        document.getElementById('user-name').innerText = data.name || email.split('@')[0];
-        document.getElementById('user-track').innerText = data.track || 'Internship Programme';
-        document.getElementById('user-initial').innerText = (data.name || email).charAt(0).toUpperCase();
-      } else {
-        err.innerText = data.error || 'Access Denied. Check enrollment status.';
-        err.style.display = 'block';
-        btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
-        btn.disabled = false;
-      }
-    })
-    .catch(() => {
-      currentUserEmail = email;
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'flex';
-      document.getElementById('user-name').innerText = email.split('@')[0];
-      document.getElementById('user-track').innerText = 'Internship Programme';
-      document.getElementById('user-initial').innerText = email.charAt(0).toUpperCase();
-    });
+// --- LOGOUT FUNCTION ---
+function logout() {
+  localStorage.removeItem('peregrine_session'); // Clear the browser memory
+  window.location.href = 'index.html'; // Send them back to the main login page
 }
 
 function toggleAI() { document.getElementById('ai-panel').classList.toggle('open'); }
