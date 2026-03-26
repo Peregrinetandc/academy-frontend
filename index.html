@@ -332,13 +332,10 @@
     <p>Student Portal Login</p>
     
     <div class="input-group">
-      <label>Username</label>
-      <input type="text" id="login-username" placeholder="Enter your username" required onkeydown="if(event.key==='Enter')authenticate()">
+      <label>Registered Email</label>
+      <input type="email" id="login-email" placeholder="student@university.edu" required onkeydown="if(event.key==='Enter')authenticate()">
     </div>
-    <div class="input-group">
-      <label>Password</label>
-      <input type="password" id="login-password" placeholder="Enter your password" required onkeydown="if(event.key==='Enter')authenticate()">
-    </div>
+    
     <button class="btn-enroll" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
     <div id="login-error"></div>
   </div>
@@ -384,6 +381,7 @@
         <h4 id="user-name">Student Name</h4>
         <p id="user-track">Enrolled Track</p>
       </div>
+      <i class="fas fa-sign-out-alt" style="margin-left:auto; color:rgba(255,255,255,0.5); cursor:pointer; font-size: 16px;" onclick="logout()" title="Log out"></i>
     </div>
   </aside>
 
@@ -954,7 +952,7 @@ function closeSidebar() {
 // ═══════════════════════════════════════════════════════
 // EXISTING LMS LOGIC
 // ═══════════════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbyMWtGY9UyN5-Rxftmh7xSJSG0lL4JDfSJm0ykXL0pArnkTDXpvDqSWkjogPq98SjQI/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
 let currentUserEmail = "";
 let currentWeek = 1;
 
@@ -1006,55 +1004,88 @@ function checkUnlock(progressData) {
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// MODIFIED AUTHENTICATE FUNCTION
-// ═══════════════════════════════════════════════════════
+// --- MODIFIED AUTHENTICATE FUNCTION ---
 function authenticate() {
-  const username = document.getElementById('login-username').value.trim();
-  const password = document.getElementById('login-password').value.trim();
+  const email = document.getElementById('login-email').value.trim();
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
-  
-  // Basic validation to ensure both fields are filled
-  if(!username || !password) {
-    err.innerText = 'Please enter both username and password.';
-    err.style.display = 'block';
-    return;
-  }
+  if(!email) return;
   
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
   btn.disabled = true;
   err.style.display = 'none';
 
-  // Note: Updated the URL parameters to send 'username' and 'password'
-  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(username)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
+  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
     .then(res => res.json())
     .then(data => {
       if(data.ok) {
-        currentUserEmail = username; // Keeping variable name same so the rest of your app still works
+        currentUserEmail = email;
+        
+        // --- NEW: Save to LocalStorage ---
+        const savedData = {
+          email: email,
+          name: data.name || email.split('@')[0],
+          track: data.track || 'Internship Programme',
+          week: data.week || 1,
+          tasks: data.tasks || null
+        };
+        localStorage.setItem('peregrine_session', JSON.stringify(savedData));
+        // ---------------------------------
+
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('dashboard').style.display = 'flex';
-        document.getElementById('user-name').innerText = data.name || username;
-        document.getElementById('user-track').innerText = data.track || 'Internship Programme';
-        document.getElementById('user-initial').innerText = (data.name || username).charAt(0).toUpperCase();
+        document.getElementById('user-name').innerText = savedData.name;
+        document.getElementById('user-track').innerText = savedData.track;
+        document.getElementById('user-initial').innerText = savedData.name.charAt(0).toUpperCase();
         if (data.week) applyProgress(data.week, data.tasks);
       } else {
-        err.innerText = data.error || 'Access Denied. Invalid username or password.';
+        err.innerText = data.error || 'Access Denied. Check enrollment status.';
         err.style.display = 'block';
         btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
         btn.disabled = false;
       }
     })
     .catch(() => {
-      // Offline fallback logic
-      currentUserEmail = username; 
+      // Offline mode fallback saving
+      currentUserEmail = email;
+      const savedData = { email: email, name: email.split('@')[0], track: 'Internship Programme', week: 1, tasks: null };
+      localStorage.setItem('peregrine_session', JSON.stringify(savedData));
+
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'flex';
-      document.getElementById('user-name').innerText = username;
-      document.getElementById('user-track').innerText = 'Internship Programme';
-      document.getElementById('user-initial').innerText = username.charAt(0).toUpperCase();
+      document.getElementById('user-name').innerText = savedData.name;
+      document.getElementById('user-track').innerText = savedData.track;
+      document.getElementById('user-initial').innerText = savedData.name.charAt(0).toUpperCase();
     });
 }
+
+// --- NEW FUNCTION: CHECK LOGIN ON PAGE REFRESH ---
+function checkLoginState() {
+  const sessionString = localStorage.getItem('peregrine_session');
+  if (sessionString) {
+    const savedData = JSON.parse(sessionString);
+    currentUserEmail = savedData.email;
+    
+    // Skip login and show dashboard
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'flex';
+    
+    // Fill in the dashboard data
+    document.getElementById('user-name').innerText = savedData.name;
+    document.getElementById('user-track').innerText = savedData.track;
+    document.getElementById('user-initial').innerText = savedData.name.charAt(0).toUpperCase();
+    if (savedData.week) applyProgress(savedData.week, savedData.tasks);
+  }
+}
+// Run check when the page loads
+window.onload = checkLoginState;
+
+// --- NEW FUNCTION: LOG OUT ---
+function logout() {
+  localStorage.removeItem('peregrine_session'); // Delete the memory
+  location.reload(); // Refresh the page to show the login screen again
+}
+// ------------------------------------------------
 
 function clockIn() {
   const btn = document.getElementById('btn-clockin');
