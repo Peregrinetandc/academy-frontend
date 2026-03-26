@@ -330,9 +330,14 @@
     <img src="https://raw.githubusercontent.com/Peregrinetandc/academy-frontend/main/logo-bg.png" alt="Peregrine T&C Logo" class="login-logo-img">
     <h2>Peregrine T&amp;C</h2>
     <p>Student Portal Login</p>
+    
     <div class="input-group">
-      <label>Registered Email</label>
-      <input type="email" id="login-email" placeholder="student@university.edu" required onkeydown="if(event.key==='Enter')authenticate()">
+      <label>Username</label>
+      <input type="text" id="login-username" placeholder="Enter your username" required onkeydown="if(event.key==='Enter')authenticate()">
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="Enter your password" required onkeydown="if(event.key==='Enter')authenticate()">
     </div>
     <button class="btn-enroll" id="login-btn" onclick="authenticate()">Access Portal <i class="fas fa-arrow-right"></i></button>
     <div id="login-error"></div>
@@ -949,7 +954,7 @@ function closeSidebar() {
 // ═══════════════════════════════════════════════════════
 // EXISTING LMS LOGIC
 // ═══════════════════════════════════════════════════════
-const API_URL = "https://script.google.com/macros/s/AKfycbytz9mtPJjPNzRwHsufMihy4Cpp4k-dh0KQh2X2MpN5GO-u-TYwDoIQTd03-k743Zuu/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbyMWtGY9UyN5-Rxftmh7xSJSG0lL4JDfSJm0ykXL0pArnkTDXpvDqSWkjogPq98SjQI/exec";
 let currentUserEmail = "";
 let currentWeek = 1;
 
@@ -1001,41 +1006,53 @@ function checkUnlock(progressData) {
   }
 }
 
+// ═══════════════════════════════════════════════════════
+// MODIFIED AUTHENTICATE FUNCTION
+// ═══════════════════════════════════════════════════════
 function authenticate() {
-  const email = document.getElementById('login-email').value.trim();
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
   const btn = document.getElementById('login-btn');
   const err = document.getElementById('login-error');
-  if(!email) return;
+  
+  // Basic validation to ensure both fields are filled
+  if(!username || !password) {
+    err.innerText = 'Please enter both username and password.';
+    err.style.display = 'block';
+    return;
+  }
   
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
   btn.disabled = true;
   err.style.display = 'none';
 
-  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(email)}&email=${encodeURIComponent(email)}&name=${encodeURIComponent(email.split('@')[0])}`)
+  // Note: Updated the URL parameters to send 'username' and 'password'
+  fetch(`${API_URL}?action=signin&uid=${encodeURIComponent(username)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
     .then(res => res.json())
     .then(data => {
       if(data.ok) {
-        currentUserEmail = email;
+        currentUserEmail = username; // Keeping variable name same so the rest of your app still works
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('dashboard').style.display = 'flex';
-        document.getElementById('user-name').innerText = data.name || email.split('@')[0];
+        document.getElementById('user-name').innerText = data.name || username;
         document.getElementById('user-track').innerText = data.track || 'Internship Programme';
-        document.getElementById('user-initial').innerText = (data.name || email).charAt(0).toUpperCase();
+        document.getElementById('user-initial').innerText = (data.name || username).charAt(0).toUpperCase();
         if (data.week) applyProgress(data.week, data.tasks);
       } else {
-        err.innerText = data.error || 'Access Denied. Check enrollment status.';
+        err.innerText = data.error || 'Access Denied. Invalid username or password.';
         err.style.display = 'block';
         btn.innerHTML = 'Access Portal <i class="fas fa-arrow-right"></i>';
         btn.disabled = false;
       }
     })
     .catch(() => {
-      currentUserEmail = email;
+      // Offline fallback logic
+      currentUserEmail = username; 
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('dashboard').style.display = 'flex';
-      document.getElementById('user-name').innerText = email.split('@')[0];
+      document.getElementById('user-name').innerText = username;
       document.getElementById('user-track').innerText = 'Internship Programme';
-      document.getElementById('user-initial').innerText = email.charAt(0).toUpperCase();
+      document.getElementById('user-initial').innerText = username.charAt(0).toUpperCase();
     });
 }
 
